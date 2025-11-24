@@ -1,74 +1,74 @@
 export const sections = [
   {
     id: "problem",
-    navLabel: "The 3.2x Problem",
-    navPreview: "Why fragmentation costs $4.8M/year in WA alone",
+    navLabel: "The Springfield Paradox",
+    navPreview: "D'oh! Why fragmented data costs Springfield $4.8M/year",
     icon: "alert-circle",
 
     heroStat: {
       value: "3.2x",
-      label: "time wasted on fragmented spatial AI approaches",
+      label: "more donuts Homer could buy if spatial data wasn't fragmented",
       countUp: false,
       duration: 2000
     },
 
-    keyInsight: "Every WA council is solving the same AI-geospatial problems independently. National coordination could collapse 18-month timelines to 6.",
+    keyInsight: "Every Springfield department solves the same problems independently. Mr. Burns runs the plant his way, Chief Wiggum maps crime his way, and Mayor Quimby... well, he doesn't really do much at all.",
 
     visualType: "splitComparison",
     visualData: {
       before: {
-        label: "Today",
-        description: "127 LGAs, 127 different approaches",
+        label: "Springfield Today",
+        description: "742 Evergreen Terrace: No one knows what anyone else is doing",
         icon: "scattered",
         details: [
-          "Duplicate vendor contracts",
-          "Inconsistent metadata standards",
-          "Manual quality checks repeated",
-          "AI training data siloed"
+          "Nuclear plant data in Burns' vault (excellent...)",
+          "Police records in Wiggum's donut box",
+          "School data wherever Skinner left it",
+          "Moe's customer database: napkin-based"
         ]
       },
       after: {
         label: "With Framework",
-        description: "One national standard, local flexibility",
+        description: "One Springfield standard, local flexibility (even for Shelbyville)",
         icon: "connected",
         details: [
-          "Shared procurement power",
+          "Shared emergency response (finally!)",
           "Consistent AI-ready formats",
           "Automated quality pipelines",
-          "Federated training datasets"
+          "Bart can't hack it (probably)"
         ]
       }
     },
 
     cta: {
-      text: "Show the duplication cost",
+      text: "Show the D'oh! cost",
       type: "reveal",
-      reveal: "$4.8M/year in WA alone on duplicate AI-spatial infrastructure"
+      reveal: "$4.8M/year in Springfield alone - that's 960,000 donuts, Homer."
     },
 
     supportingPoints: [
-      "Each LGA negotiating separate licensing for spatial data platforms",
-      "Metadata inconsistency makes cross-council AI applications nearly impossible",
-      "Manual data quality processes repeated 127 times with no shared learning",
-      "Emergency response hampered by incompatible spatial data formats"
+      "Springfield Nuclear Plant negotiated separately from Shelbyville's for the same safety monitoring",
+      "Chief Wiggum's crime mapping is incompatible with Lou and Eddie's actual patrol routes",
+      "Principal Skinner repeats data quality checks that Mrs. Krabappel already did",
+      "When Sideshow Bob escapes (again), incompatible data formats delay response by 2.3 episodes"
     ]
   },
 
   {
     id: "advantage",
-    navLabel: "WA's Unfair Advantage",
-    navPreview: "30+ agencies, 3-5 years ahead of national baseline",
+    navLabel: "Springfield's Hidden Assets",
+    navPreview: "30+ departments, surprisingly 3-5 years ahead",
     icon: "zap",
 
     heroStat: {
       value: "30+",
-      label: "agencies collaborating on Spatial WA digital twin",
+      label: "Springfield departments that somehow keep the town running",
       countUp: true,
       duration: 2000,
       suffix: ""
     },
 
-    keyInsight: "WA isn't asking for special treatment - we're 3-5 years ahead and offering the blueprint.",
+    keyInsight: "Springfield isn't asking for special treatment - despite the chaos, they're actually 3-5 years ahead. Professor Frink's been doing AI since 1989. GLAVIN!",
 
     visualType: "toggleComparison",
     visualData: {
@@ -76,135 +76,135 @@ export const sections = [
       waValues: [85, 80, 70],
       nationalValues: [60, 55, 40],
       toggleStates: [
-        { id: "wa", label: "WA Today" },
-        { id: "national", label: "National Baseline" }
+        { id: "wa", label: "Springfield" },
+        { id: "national", label: "Shelbyville" }
       ]
     },
 
     cta: {
-      text: "Why WA is different",
+      text: "Why Springfield is different",
       type: "reveal",
       reveal: [
-        "SLIP/Data WA = whole-of-government platform, not just a portal",
-        "Economic modeling shows spatial data drives nation-leading GSP impact",
-        "Already using AI-ready formats (STAC, GeoParquet, COG) in production",
-        "30+ agencies collaborating on shared digital twin infrastructure"
+        "Professor Frink's Lab = whole-of-government R&D, not just explosions",
+        "Economic modeling shows Duff Beer alone drives nation-leading GSP impact",
+        "Already using AI-ready formats (Burns approved them... reluctantly)",
+        "30+ departments collaborating despite Quimby's 'leadership'"
       ]
     },
 
     supportingPoints: [
-      "SLIP has been operational for 15+ years with continuous improvement",
-      "Data WA provides unified discovery and access across all state data",
-      "Spatial WA digital twin integrates real-time and authoritative datasets",
-      "WA Government already committed to open data principles and AI ethics"
+      "Springfield Elementary's computer lab has been operational since Season 1",
+      "Krusty Burger provides unified food safety data across all franchises",
+      "Springfield Gorge digital twin integrates real-time and historical skateboard trajectory data",
+      "Town already committed to open data principles (Lisa insisted)"
     ]
   },
 
   {
     id: "national-framework",
-    navLabel: "The National Play",
-    navPreview: "Ship a working minimum in 6 months using WA templates",
+    navLabel: "The Springfield Protocol",
+    navPreview: "Ship a working minimum in 6 months using Springfield templates",
     icon: "network",
 
     heroStat: {
       value: "4",
-      label: "pilot states needed to prove the framework works",
+      label: "pilot towns needed (not Shelbyville, they're the worst)",
       countUp: true,
       duration: 1500,
       suffix: ""
     },
 
-    keyInsight: "Use WA's existing specs as templates, not theory. Ship a working minimum in 6 months, not 2 years.",
+    keyInsight: "Use Springfield's existing specs as templates. Ship a working minimum in 6 months, not 2 years. Even Homer could follow it. Probably.",
 
     visualType: "animatedLayers",
     visualData: {
       layers: [
         {
           name: "Platforms & Services",
-          description: "SLIP, Data WA, state portals, digital twins",
-          waArtifact: "Data WA integration patterns + API specs",
+          description: "Nuclear monitoring, Kwik-E-Mart inventory, digital twins",
+          waArtifact: "Springfield Data Integration patterns + API specs",
           color: "blue"
         },
         {
           name: "Standards & Schemas",
-          description: "Metadata, formats, governance rules",
-          waArtifact: "SLIP metadata schema v2.0",
+          description: "Metadata, formats, governance rules (Burns-approved)",
+          waArtifact: "Springfield metadata schema v2.0 - Now with fewer typos!",
           color: "teal"
         },
         {
           name: "Policy & Principles",
-          description: "Ethics, privacy, AI safety, open data",
-          waArtifact: "WA Data Ethics Framework",
+          description: "Ethics (Lisa), Privacy (Flanders), AI safety (everyone else)",
+          waArtifact: "Springfield Data Ethics Framework (Marge wrote it)",
           color: "navy"
         }
       ]
     },
 
     stepper: {
-      title: "The 90-day sprint to national standard",
+      title: "The 90-day sprint to state-wide standard",
       steps: [
         {
-          action: "Map current state frameworks across all jurisdictions",
+          action: "Map current frameworks across all jurisdictions",
           time: "2 weeks",
-          myRole: "Facilitate structured discovery interviews with state leads"
+          myRole: "Interview Burns, Quimby, and Wiggum (bring donuts)"
         },
         {
-          action: "Draft minimum viable national standard using WA templates",
+          action: "Draft minimum viable standard using Springfield templates",
           time: "3 weeks",
-          myRole: "Author spec documents in plain language with worked examples"
+          myRole: "Author specs in plain language (Homer-readable level)"
         },
         {
-          action: "Pilot with 3-4 diverse states (metro + regional)",
+          action: "Pilot with diverse towns (NOT Shelbyville)",
           time: "4 weeks",
-          myRole: "Support technical integration and gather real-world feedback"
+          myRole: "Support integration and gather feedback (and donuts)"
         },
         {
           action: "Iterate standard based on pilot learnings",
           time: "2 weeks",
-          myRole: "Synthesize feedback and update framework documentation"
+          myRole: "Synthesize feedback, update docs, avoid monorail salesmen"
         },
         {
-          action: "Lock governance model and ongoing support structure",
+          action: "Lock governance model and support structure",
           time: "1 week",
-          myRole: "Design review cycles and community of practice model"
+          myRole: "Design review cycles - Lisa chairs the ethics committee"
         }
       ]
     },
 
     cta: {
-      text: "See WA's reusable artifacts",
+      text: "See Springfield's reusable artifacts",
       type: "reveal",
       reveal: [
-        "SLIP Metadata Schema: 15+ years of refinement, AI-ready",
-        "Data WA API Patterns: REST, OGC, and modern streaming protocols",
-        "Spatial WA Governance Model: Co-design process with 30+ agencies",
-        "Open Data Policy Templates: Privacy-preserving, audit-ready"
+        "Nuclear Safety Schema: 30+ years of near-misses, finally documented",
+        "Kwik-E-Mart API Patterns: REST, real-time Squishee inventory",
+        "Springfield Governance Model: Co-design with 30+ departments",
+        "Open Data Policy: Privacy-preserving (Flanders reviewed it twice)"
       ]
     },
 
     supportingPoints: [
-      "ANZLIC and ICSM provide existing governance structures for national coordination",
-      "WA already participates in national spatial standards development",
-      "Framework designed for federation, not centralization",
-      "Each state maintains sovereignty while gaining interoperability"
+      "SNPP and Springfield Elementary provide existing governance structures",
+      "Springfield already participates in state spatial standards (when they remember)",
+      "Framework designed for federation - each town maintains sovereignty",
+      "Even Shelbyville could join (if they ask nicely)"
     ]
   },
 
   {
     id: "wa-adoption",
-    navLabel: "Making It Real in WA",
-    navPreview: "18->6 months saved by starting with existing patterns",
+    navLabel: "Operation: Fix Springfield",
+    navPreview: "18→6 months saved by starting with existing patterns",
     icon: "route",
 
     heroStat: {
-      value: "18->6",
-      label: "months saved by leveraging WA's existing patterns",
+      value: "18→6",
+      label: "months saved - enough time for Homer to finish his to-do list (just kidding)",
       countUp: false,
       duration: 2000,
       suffix: " mos"
     },
 
-    keyInsight: "Adoption isn't a compliance exercise. It's showing teams how standards make their work easier.",
+    keyInsight: "Adoption isn't a compliance exercise. It's showing teams how standards make their work easier. Even Lenny and Carl get it.",
 
     visualType: "compressibleTimeline",
     visualData: {
@@ -215,41 +215,41 @@ export const sections = [
           name: "Gap Assessment",
           standard: 3,
           optimized: 1,
-          whatHappens: "Map national framework requirements vs current WA standards and platforms",
-          myValue: "Facilitate structured discovery using gap analysis templates",
-          artifact: "Gap analysis report + priority matrix for WA implementation"
+          whatHappens: "Map framework requirements vs current Springfield standards",
+          myValue: "Facilitate discovery interviews (bring Duff, not Fudd)",
+          artifact: "Gap analysis report + priority matrix for Springfield"
         },
         {
           name: "Co-design Workshops",
           standard: 4,
           optimized: 1.5,
-          whatHappens: "Bring Landgate, agencies, and technical leads together to design WA approach",
-          myValue: "Lead workshops with spec-driven materials and plain-language examples",
-          artifact: "WA Implementation Guide v0.1 + agency-specific playbooks"
+          whatHappens: "Bring Burns, departments, and Frink together to design approach",
+          myValue: "Lead workshops with spec-driven materials and visual examples",
+          artifact: "Springfield Implementation Guide v0.1 + department playbooks"
         },
         {
           name: "Standards Development",
           standard: 5,
           optimized: 1.5,
-          whatHappens: "Create WA-specific extensions and integration specifications",
-          myValue: "Author clear, adoptable specs with worked examples and code samples",
+          whatHappens: "Create Springfield-specific extensions and integration specs",
+          myValue: "Author clear specs with examples (Frink reviews, adds 'GLAVIN!')",
           artifact: "Technical specifications + reference implementations"
         },
         {
           name: "Pilot Rollout",
           standard: 4,
           optimized: 1.5,
-          whatHappens: "Test with 3-5 high-impact systems (Data WA, SLIP, Spatial WA priority areas)",
-          myValue: "Mentor technical leads, troubleshoot integration issues, document patterns",
-          artifact: "Proven integration patterns + lessons learned documentation"
+          whatHappens: "Test with SNPP, Police, School, Kwik-E-Mart, and Moe's",
+          myValue: "Mentor leads, troubleshoot issues, document patterns",
+          artifact: "Proven integration patterns + lessons learned"
         },
         {
           name: "Training & Enablement",
           standard: 2,
           optimized: 0.5,
-          whatHappens: "Deliver awareness sessions and technical training across agencies",
-          myValue: "Run tailored training programs (technical + strategic audiences)",
-          artifact: "Training materials + self-service learning resources"
+          whatHappens: "Deliver training across all Springfield departments",
+          myValue: "Run tailored programs (executive: Quimby | technical: Frink)",
+          artifact: "Training materials + self-service resources (with pictures for Homer)"
         }
       ]
     },
@@ -258,37 +258,37 @@ export const sections = [
       text: "How we accelerate adoption",
       type: "reveal",
       reveal: [
-        "Start with existing SLIP/Data WA patterns, not from scratch",
-        "Governance as enabler: provide templates, automation, clear examples",
+        "Start with existing Springfield patterns, not from scratch",
+        "Governance as enabler: templates, automation, clear examples",
         "Spec-driven approach: ADRs, feature specs, implementation guides",
         "Focus on high-leverage systems that demonstrate immediate value"
       ]
     },
 
     supportingPoints: [
-      "Landgate already has strong technical capability to support implementation",
-      "WA agencies have established collaboration patterns through Spatial WA",
+      "Springfield Nuclear already has strong technical capability (somehow)",
+      "Departments have established collaboration patterns through annual Whacking Day",
       "Can demonstrate quick wins with systems already near AI-readiness",
-      "Implementation guide becomes living playbook for continuous improvement"
+      "Implementation guide becomes living playbook - updated after each crisis"
     ]
   },
 
   {
     id: "capability",
-    navLabel: "The 5-Year Multiplier",
-    navPreview: "$2.4M annual value from reuse at maturity",
+    navLabel: "The Compound D'oh!",
+    navPreview: "$2.4M annual value - that's a LOT of donuts",
     icon: "trending-up",
 
     heroStat: {
       value: "2.4",
-      label: "estimated annual value ($M) from reuse once framework matures (WA only)",
+      label: "annual value ($M) from reuse - or 480,000 donuts, for context",
       countUp: true,
       duration: 2500,
       prefix: "$",
       suffix: "M"
     },
 
-    keyInsight: "This isn't a project. It's a capability that compounds - each agency makes the next adoption easier.",
+    keyInsight: "This isn't a project. It's a capability that compounds. Each department makes the next adoption easier. It's like compound interest, but for competence. Excellent...",
 
     visualType: "radarWithCalc",
     visualData: {
@@ -296,36 +296,36 @@ export const sections = [
       today: [60, 65, 55, 70, 50],
       target: [85, 90, 80, 90, 85],
       calculator: {
-        title: "Estimate your agency's benefit",
+        title: "Estimate your department's benefit",
         orgSizes: [
           {
-            label: "Small (1-2 spatial staff)",
+            label: "Small (Moe's Tavern size)",
             value: "small",
             benefit: 45000,
-            description: "Reduced duplicate effort, access to shared resources"
+            description: "Reduced duplicate effort, access to shared resources, better napkin alternatives"
           },
           {
-            label: "Medium (3-10 spatial staff)",
+            label: "Medium (Springfield Elementary size)",
             value: "medium",
             benefit: 180000,
-            description: "Standardized workflows, reusable components, training savings"
+            description: "Standardized workflows, reusable components, Skinner finally gets budget visibility"
           },
           {
-            label: "Large (10+ spatial staff)",
+            label: "Large (Nuclear Plant size)",
             value: "large",
             benefit: 450000,
-            description: "Platform efficiencies, AI capabilities, cross-agency collaboration"
+            description: "Platform efficiencies, AI capabilities, Burns actually impressed (once)"
           }
         ]
       },
       growthAnimation: {
         title: "The compound effect over 5 years",
         milestones: [
-          { year: 1, agencies: 3, value: "Foundation set with pilot agencies" },
-          { year: 2, agencies: 8, value: "Early patterns proven and documented" },
-          { year: 3, agencies: 15, value: "2 shared services launched, training scaled" },
-          { year: 4, agencies: 25, value: "Community of practice thriving, reuse accelerating" },
-          { year: 5, agencies: 30, value: "Mature capability, marketplace of components" }
+          { year: 1, agencies: 3, value: "Foundation set: SNPP, Police, School" },
+          { year: 2, agencies: 8, value: "Patterns proven: Krusty Burger, Hospital join" },
+          { year: 3, agencies: 15, value: "2 shared services launched, Frink trains others" },
+          { year: 4, agencies: 25, value: "Community thriving, even Comic Book Guy contributes" },
+          { year: 5, agencies: 30, value: "Mature capability - Springfield becomes the model" }
         ]
       }
     },
@@ -333,25 +333,25 @@ export const sections = [
     cta: {
       text: "See the compound effect",
       type: "reveal",
-      reveal: "Growth trajectory included in visualization below"
+      reveal: "Growth trajectory included in visualization below. Monorail not included."
     },
 
     supportingPoints: [
-      "Living playbook and pattern library maintained by community of practice",
-      "Track metrics: reuse rates, data quality scores, AI use in decision-making",
-      "Training programs evolve based on real agency needs and use cases",
-      "Success stories and case studies accelerate adoption across government",
-      "Framework becomes foundation for next-generation services (predictive analytics, autonomous systems)"
+      "Living playbook maintained by community of practice (Lisa is secretary)",
+      "Track metrics: reuse rates, data quality, crisis response times",
+      "Training programs evolve based on real department needs",
+      "Success stories accelerate adoption - even Shelbyville wants in now",
+      "Framework becomes foundation for next-gen services (Professor Frink already planning)"
     ]
   }
 ];
 
 // Export metadata for easy reference
 export const appMetadata = {
-  title: "WA's AI-Ready Spatial Framework",
-  subtitle: "A 10-minute interactive story",
+  title: "Springfield's AI-Ready Spatial Framework",
+  subtitle: "A 10-minute interactive story (Excellent...)",
   totalSections: sections.length,
   estimatedTime: "10 minutes",
   author: "Craig McDonnell",
-  version: "1.0.0"
+  version: "2.0.0-springfield"
 };
