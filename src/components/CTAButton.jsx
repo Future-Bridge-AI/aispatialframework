@@ -2,11 +2,11 @@ export default function CTAButton({ text, onClick, isActive }) {
   return (
     <button
       onClick={onClick}
-      className={`cta-button ${isActive ? 'bg-wa-navy' : ''}`}
+      className={`cta-button ${isActive ? 'border-aqua text-aqua' : ''}`}
     >
-      <span>{text}</span>
-      <span className={`transition-transform duration-300 ${isActive ? 'rotate-180' : ''}`}>
-        ▼
+      <span className="tracking-wider">{text}</span>
+      <span className={`transition-transform duration-500 ${isActive ? 'rotate-180' : ''}`}>
+        ↓
       </span>
     </button>
   );

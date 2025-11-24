@@ -27,11 +27,16 @@ export default function HeroStat({ value, label, countUp, duration = 2000, prefi
   const hasNumeric = !isNaN(numericValue);
 
   return (
-    <div ref={ref} className="space-y-3">
+    <div ref={ref} className="space-y-6">
+      {/* Decorative line above */}
+      <div className="flex justify-center">
+        <div className="w-24 h-px bg-gradient-to-r from-transparent via-aqua/40 to-transparent" />
+      </div>
+
       <div className="hero-stat">
         {countUp && hasNumeric && shouldAnimate ? (
           <>
-            {prefix}
+            <span className="text-aqua/80">{prefix}</span>
             <CountUp
               start={0}
               end={numericValue}
@@ -39,14 +44,20 @@ export default function HeroStat({ value, label, countUp, duration = 2000, prefi
               separator=","
               decimals={value.toString().includes('.') ? 1 : 0}
             />
-            {value.toString().replace(/[0-9.,]/g, '')}
-            {suffix}
+            <span className="text-mist">{value.toString().replace(/[0-9.,]/g, '')}</span>
+            <span className="text-aqua/80">{suffix}</span>
           </>
         ) : (
-          value
+          <span>{value}</span>
         )}
       </div>
-      <p className="text-gray-600 text-lg">{label}</p>
+
+      <p className="text-mist text-lg font-light tracking-wide max-w-lg mx-auto">{label}</p>
+
+      {/* Decorative line below */}
+      <div className="flex justify-center">
+        <div className="w-12 h-px bg-gradient-to-r from-transparent via-stone to-transparent" />
+      </div>
     </div>
   );
 }

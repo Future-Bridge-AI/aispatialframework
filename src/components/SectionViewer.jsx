@@ -10,13 +10,13 @@ export default function SectionViewer({ section, sectionIndex, tldrMode }) {
   if (tldrMode) {
     return (
       <div className="section-card">
-        <div className="flex items-start gap-4">
-          <div className="flex-shrink-0 w-12 h-12 bg-wa-blue/10 rounded-lg flex items-center justify-center">
-            <span className="text-lg font-bold text-wa-blue">{sectionIndex + 1}</span>
+        <div className="flex items-start gap-6">
+          <div className="flex-shrink-0">
+            <span className="text-4xl font-light text-aqua">{String(sectionIndex + 1).padStart(2, '0')}</span>
           </div>
           <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-2">{section.navLabel}</h2>
-            <p className="text-gray-700 font-medium">{section.keyInsight}</p>
+            <h2 className="text-xl font-light text-bone mb-3 tracking-wide">{section.navLabel}</h2>
+            <p className="text-cream/70 font-light leading-relaxed">{section.keyInsight}</p>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@ export default function SectionViewer({ section, sectionIndex, tldrMode }) {
   }
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-16">
       {/* Hero Stat */}
       <div className="text-center animate-on-scroll revealed">
         <HeroStat
@@ -35,6 +35,13 @@ export default function SectionViewer({ section, sectionIndex, tldrMode }) {
           prefix={section.heroStat.prefix}
           suffix={section.heroStat.suffix}
         />
+      </div>
+
+      {/* Divider */}
+      <div className="flex items-center justify-center gap-4">
+        <div className="h-px w-16 bg-gradient-to-r from-transparent to-aqua/30" />
+        <div className="w-1 h-1 bg-aqua/50 rounded-full" />
+        <div className="h-px w-16 bg-gradient-to-l from-transparent to-aqua/30" />
       </div>
 
       {/* Key Insight */}
@@ -61,20 +68,20 @@ export default function SectionViewer({ section, sectionIndex, tldrMode }) {
           />
 
           {revealed && section.cta.reveal && (
-            <div className="mt-6 section-card animate-fade-in-up">
+            <div className="mt-8 section-card animate-fade-in-up">
               {Array.isArray(section.cta.reveal) ? (
-                <ul className="space-y-3 text-left">
+                <ul className="space-y-4 text-left">
                   {section.cta.reveal.map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-6 h-6 bg-wa-blue/10 rounded-full flex items-center justify-center mt-0.5">
-                        <span className="text-sm font-bold text-wa-blue">✓</span>
+                    <li key={i} className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-6 h-6 border border-aqua/30 flex items-center justify-center mt-0.5">
+                        <span className="text-xs text-aqua">{String(i + 1).padStart(2, '0')}</span>
                       </div>
-                      <span className="text-gray-700">{item}</span>
+                      <span className="text-cream/80 font-light">{item}</span>
                     </li>
                   ))}
                 </ul>
               ) : (
-                <p className="text-lg font-semibold text-wa-blue">{section.cta.reveal}</p>
+                <p className="text-xl font-light text-aqua glow-text">{section.cta.reveal}</p>
               )}
             </div>
           )}
@@ -86,18 +93,19 @@ export default function SectionViewer({ section, sectionIndex, tldrMode }) {
         <div className="animate-on-scroll revealed" style={{ animationDelay: '0.8s' }}>
           <button
             onClick={() => setExpanded(!expanded)}
-            className="text-sm text-gray-600 hover:text-wa-blue transition-colors flex items-center gap-2 mx-auto"
+            className="text-sm text-mist hover:text-aqua transition-colors flex items-center gap-3 mx-auto tracking-wide"
           >
-            {expanded ? '▼' : '▶'} {expanded ? 'Hide' : 'Show'} additional context
+            <span className={`transform transition-transform ${expanded ? 'rotate-90' : ''}`}>→</span>
+            {expanded ? 'Hide context' : 'Additional context'}
           </button>
 
           {expanded && (
-            <div className="mt-4 section-card animate-fade-in-up">
-              <ul className="space-y-2 text-sm text-gray-700">
+            <div className="mt-6 section-card animate-fade-in-up">
+              <ul className="space-y-3 text-sm">
                 {section.supportingPoints.map((point, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="text-gray-400">•</span>
-                    <span>{point}</span>
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="text-drift">—</span>
+                    <span className="text-cream/60 font-light">{point}</span>
                   </li>
                 ))}
               </ul>

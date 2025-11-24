@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from 'recharts';
-import { Calculator, TrendingUp } from 'lucide-react';
 import { formatCurrency } from '../../utils/helpers';
 
 export default function RadarWithCalc({ data }) {
@@ -17,55 +16,57 @@ export default function RadarWithCalc({ data }) {
     <div className="space-y-8">
       {/* Radar Chart */}
       <div className="section-card">
-        <div className="flex justify-center gap-4 mb-6">
+        <div className="flex justify-center gap-1 mb-8">
           <button
             onClick={() => setRadarView('today')}
-            className={`px-6 py-2 rounded-lg font-medium transition-all ${
+            className={`px-8 py-3 text-sm tracking-widest uppercase transition-all duration-500 ${
               radarView === 'today'
-                ? 'bg-wa-blue text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-aqua/10 text-aqua border border-aqua/30'
+                : 'bg-transparent text-mist border border-stone hover:border-aqua/30'
             }`}
           >
             Today
           </button>
           <button
             onClick={() => setRadarView('target')}
-            className={`px-6 py-2 rounded-lg font-medium transition-all ${
+            className={`px-8 py-3 text-sm tracking-widest uppercase transition-all duration-500 ${
               radarView === 'target'
-                ? 'bg-wa-blue text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-aqua/10 text-aqua border border-aqua/30'
+                : 'bg-transparent text-mist border border-stone hover:border-aqua/30'
             }`}
           >
-            Target (3-5 years)
+            Target
           </button>
         </div>
 
         <div className="h-96">
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={radarData}>
-              <PolarGrid stroke="#e5e7eb" />
+              <PolarGrid stroke="#252525" />
               <PolarAngleAxis
                 dataKey="dimension"
-                tick={{ fill: '#6b7280', fontSize: 12 }}
+                tick={{ fill: '#c9c5bc', fontSize: 11, fontWeight: 300 }}
               />
               <PolarRadiusAxis
                 angle={90}
                 domain={[0, 100]}
-                tick={{ fill: '#6b7280', fontSize: 10 }}
+                tick={{ fill: '#c9c5bc', fontSize: 10 }}
+                axisLine={false}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: 'white',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '8px'
+                  backgroundColor: '#1a1a1a',
+                  border: '1px solid #252525',
+                  borderRadius: '0'
                 }}
+                labelStyle={{ color: '#f5f2ed' }}
               />
               <Radar
                 name={radarView === 'today' ? 'Today' : 'Target'}
                 dataKey="value"
-                stroke="#0066CC"
-                fill="#0066CC"
-                fillOpacity={0.6}
+                stroke="#7fb8c9"
+                fill="#7fb8c9"
+                fillOpacity={0.3}
                 animationDuration={800}
               />
             </RadarChart>
@@ -75,45 +76,44 @@ export default function RadarWithCalc({ data }) {
 
       {/* ROI Calculator */}
       <div className="section-card">
-        <div className="flex items-center gap-3 mb-6">
-          <Calculator className="w-6 h-6 text-wa-blue" />
-          <h3 className="text-lg font-semibold text-gray-900">
-            {data.calculator.title}
-          </h3>
-        </div>
+        <h3 className="text-xs font-medium text-mist tracking-[0.3em] uppercase mb-6">
+          {data.calculator.title}
+        </h3>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {data.calculator.orgSizes.map((orgSize) => (
             <button
               key={orgSize.value}
               onClick={() => setSelectedOrgSize(orgSize)}
-              className={`w-full p-4 rounded-lg border-2 transition-all text-left ${
+              className={`w-full p-5 border transition-all duration-500 text-left ${
                 selectedOrgSize.value === orgSize.value
-                  ? 'border-wa-blue bg-wa-blue/5 shadow-md'
-                  : 'border-gray-200 hover:border-gray-300'
+                  ? 'border-aqua/30 bg-aqua/5'
+                  : 'border-stone/30 hover:border-stone/60'
               }`}
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 mb-1">
+                  <h4 className="font-light text-bone mb-1 tracking-wide">
                     {orgSize.label}
                   </h4>
-                  <p className="text-sm text-gray-600">{orgSize.description}</p>
+                  <p className="text-sm text-mist/60 font-light">{orgSize.description}</p>
                 </div>
-                <div className="text-right ml-4">
-                  <p className="text-2xl font-bold text-wa-blue">
+                <div className="text-right ml-6">
+                  <p className="text-2xl font-light text-aqua">
                     {formatCurrency(orgSize.benefit)}
                   </p>
-                  <p className="text-xs text-gray-500">per year</p>
+                  <p className="text-xs text-mist tracking-wide">per year</p>
                 </div>
               </div>
             </button>
           ))}
         </div>
 
-        <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <p className="text-sm text-blue-900">
-            <strong>Selected:</strong> {selectedOrgSize.label} = <strong>{formatCurrency(selectedOrgSize.benefit)}/year</strong> in reduced duplication and improved efficiency
+        <div className="mt-6 p-4 border-l-2 border-aqua/30 bg-aqua/5">
+          <p className="text-sm text-cream/80 font-light">
+            <span className="text-aqua">{selectedOrgSize.label}</span> →
+            <span className="text-aqua ml-2">{formatCurrency(selectedOrgSize.benefit)}/year</span>
+            <span className="text-mist ml-2">in efficiency gains</span>
           </p>
         </div>
       </div>
@@ -123,16 +123,13 @@ export default function RadarWithCalc({ data }) {
         <div className="section-card">
           <button
             onClick={() => setShowGrowth(!showGrowth)}
-            className="w-full flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg transition-all"
+            className="w-full flex items-center justify-between p-2 hover:bg-stone/20 transition-all"
           >
-            <div className="flex items-center gap-3">
-              <TrendingUp className="w-6 h-6 text-wa-blue" />
-              <span className="font-semibold text-gray-900">
-                {data.growthAnimation.title}
-              </span>
-            </div>
-            <span className={`text-2xl transition-transform ${showGrowth ? 'rotate-180' : ''}`}>
-              v
+            <span className="text-xs font-medium text-mist tracking-[0.3em] uppercase">
+              {data.growthAnimation.title}
+            </span>
+            <span className={`text-mist transition-transform duration-500 ${showGrowth ? 'rotate-180' : ''}`}>
+              ↓
             </span>
           </button>
 
@@ -141,20 +138,20 @@ export default function RadarWithCalc({ data }) {
               {data.growthAnimation.milestones.map((milestone, index) => (
                 <div
                   key={milestone.year}
-                  className="flex items-start gap-4 p-4 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-gray-200"
+                  className="flex items-start gap-6 p-4 border-l border-aqua/20 bg-deep/30"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="flex-shrink-0 w-16 h-16 bg-wa-blue rounded-full flex items-center justify-center">
+                  <div className="flex-shrink-0 w-16 h-16 border border-aqua/30 flex items-center justify-center">
                     <div className="text-center">
-                      <p className="text-xs text-white/80 font-medium">Year</p>
-                      <p className="text-xl font-bold text-white">{milestone.year}</p>
+                      <p className="text-xs text-mist/60 uppercase tracking-widest">Year</p>
+                      <p className="text-2xl font-light text-aqua">{milestone.year}</p>
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <p className="text-2xl font-bold text-wa-blue mb-1">
-                      {milestone.agencies} agencies
+                  <div className="flex-1 pt-2">
+                    <p className="text-xl font-light text-bone mb-1">
+                      {milestone.agencies} <span className="text-sm text-mist">agencies</span>
                     </p>
-                    <p className="text-sm text-gray-700">{milestone.value}</p>
+                    <p className="text-sm text-mist/70 font-light">{milestone.value}</p>
                   </div>
                 </div>
               ))}

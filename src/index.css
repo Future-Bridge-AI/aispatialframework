@@ -3,68 +3,157 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-gray-50 text-gray-900 antialiased;
-  }
-
   html {
     scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-void text-bone antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  ::selection {
+    @apply bg-aqua/30 text-bone;
   }
 }
 
 @layer components {
-  .stat-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
+  /* Contour line background pattern */
+  .contour-bg {
+    position: relative;
+    overflow: hidden;
   }
 
-  .stat-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+  .contour-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 40px,
+        rgba(90, 154, 171, 0.03) 40px,
+        rgba(90, 154, 171, 0.03) 41px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 40px,
+        rgba(90, 154, 171, 0.02) 40px,
+        rgba(90, 154, 171, 0.02) 41px
+      );
+    pointer-events: none;
+    z-index: 0;
   }
 
+  /* Topographic wave pattern */
+  .topo-waves {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M0 100 Q50 80 100 100 T200 100' fill='none' stroke='%232a2a2a' stroke-width='1'/%3E%3Cpath d='M0 110 Q50 90 100 110 T200 110' fill='none' stroke='%23222' stroke-width='0.5'/%3E%3Cpath d='M0 120 Q50 100 100 120 T200 120' fill='none' stroke='%231a1a1a' stroke-width='0.5'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    animation: contourFlow 30s linear infinite;
+  }
+
+  /* Section cards - dark glass morphism */
   .section-card {
-    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6 transition-all duration-300;
+    @apply bg-slate/80 backdrop-blur-sm rounded-xl border border-stone/50 p-8
+           transition-all duration-500 relative overflow-hidden;
+  }
+
+  .section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(127, 184, 201, 0.3), transparent);
   }
 
   .section-card:hover {
-    @apply shadow-md border-wa-blue;
+    @apply border-aqua/30 shadow-2xl;
+    box-shadow: 0 0 60px -15px rgba(127, 184, 201, 0.15);
   }
 
+  /* CTA Button - refined dark style */
   .cta-button {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-wa-blue text-white
-           font-medium rounded-lg hover:bg-wa-navy transition-all duration-300
-           hover:shadow-lg hover:scale-105 active:scale-95;
+    @apply inline-flex items-center gap-3 px-8 py-4
+           bg-transparent border border-bone/20 text-bone
+           font-medium tracking-wide rounded-none
+           transition-all duration-500 relative overflow-hidden;
   }
 
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #7fb8c9, transparent);
+    transform: scaleX(0);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cta-button:hover {
+    @apply border-aqua/50 text-aqua;
+  }
+
+  .cta-button:hover::before {
+    transform: scaleX(1);
+  }
+
+  .cta-button:active {
+    transform: scale(0.98);
+  }
+
+  /* Sidebar styling */
   .sidebar-item {
-    @apply flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-all duration-200
-           hover:bg-gray-100;
+    @apply flex items-start gap-4 p-4 cursor-pointer transition-all duration-300
+           border-l-2 border-transparent hover:bg-stone/50;
   }
 
   .sidebar-item.active {
-    @apply bg-wa-blue/10 border-l-4 border-wa-blue;
+    @apply bg-deep border-l-aqua;
   }
 
   .sidebar-item.completed {
-    @apply opacity-75;
+    @apply opacity-60;
   }
 
+  /* Hero stat - dramatic typography */
   .hero-stat {
-    @apply text-7xl font-bold text-wa-blue leading-none;
+    @apply text-8xl md:text-9xl font-light text-bone leading-none tracking-tighter;
+    text-shadow: 0 0 80px rgba(127, 184, 201, 0.2);
   }
 
+  /* Key insight text */
   .key-insight {
-    @apply text-xl font-semibold text-gray-800 leading-relaxed max-w-3xl mx-auto;
+    @apply text-xl md:text-2xl font-light text-cream/80 leading-relaxed max-w-4xl mx-auto tracking-wide;
+  }
+
+  /* Divider lines */
+  .divider {
+    @apply h-px bg-gradient-to-r from-transparent via-drift to-transparent;
+  }
+
+  /* Glow effect for highlights */
+  .glow-text {
+    text-shadow: 0 0 40px rgba(127, 184, 201, 0.4);
+  }
+
+  /* Accent line decoration */
+  .accent-line {
+    @apply w-16 h-0.5 bg-gradient-to-r from-aqua to-transparent;
   }
 }
 
-/* Scroll reveal utilities */
+/* Scroll reveal animations */
 .animate-on-scroll {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .animate-on-scroll.revealed {
@@ -72,7 +161,46 @@
   transform: translateY(0);
 }
 
-/* Loading states */
+/* Stagger children animation */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+
+/* Loading skeleton */
 .skeleton {
-  @apply animate-pulse bg-gray-200 rounded;
+  @apply animate-pulse bg-stone rounded;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-deep;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-drift rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-mist/30;
+}
+
+/* Chart customizations */
+.recharts-cartesian-grid line {
+  stroke: #252525 !important;
+}
+
+.recharts-text {
+  fill: #c9c5bc !important;
 }

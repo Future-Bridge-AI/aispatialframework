@@ -1,32 +1,28 @@
 import { useState } from 'react';
-import { Clock, ChevronRight } from 'lucide-react';
 
 export default function CompressibleTimeline({ data, config }) {
   const [compressed, setCompressed] = useState(false);
   const [expandedStep, setExpandedStep] = useState(null);
 
   const currentDuration = compressed ? data.optimizedDuration : data.standardDuration;
-  const totalSteps = data.steps.length;
 
   return (
     <div className="section-card">
-      {/* Header with Duration Display */}
-      <div className="flex items-center justify-between mb-8">
-        <div className="flex items-center gap-3">
-          <Clock className="w-8 h-8 text-wa-blue" />
-          <div>
-            <p className="text-3xl font-bold text-gray-900">
-              {currentDuration} months
-            </p>
-            <p className="text-sm text-gray-600">
-              {compressed ? 'Optimized timeline' : 'Standard timeline'}
-            </p>
-          </div>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-10">
+        <div>
+          <p className="text-6xl font-light text-bone tracking-tighter">
+            {currentDuration}
+            <span className="text-2xl text-mist ml-2">months</span>
+          </p>
+          <p className="text-sm text-mist mt-2 tracking-wide">
+            {compressed ? 'Optimized with existing patterns' : 'Standard implementation'}
+          </p>
         </div>
 
         <button
           onClick={() => setCompressed(!compressed)}
-          className="px-6 py-3 bg-wa-blue text-white rounded-lg hover:bg-wa-navy transition-all shadow-lg hover:shadow-xl"
+          className="px-6 py-3 border border-aqua/30 text-aqua hover:bg-aqua/10 transition-all duration-500 tracking-wide text-sm"
         >
           {compressed ? 'Show Standard' : 'Compress Timeline'}
         </button>
@@ -34,9 +30,10 @@ export default function CompressibleTimeline({ data, config }) {
 
       {/* Savings Banner */}
       {compressed && (
-        <div className="mb-6 p-4 bg-green-50 border-2 border-green-200 rounded-lg animate-fade-in-up">
-          <p className="text-green-800 font-semibold text-center">
-            Saved {data.standardDuration - data.optimizedDuration} months by leveraging existing patterns
+        <div className="mb-8 p-4 border border-aqua/20 bg-aqua/5 animate-fade-in-up">
+          <p className="text-aqua font-light text-center tracking-wide">
+            <span className="text-2xl font-light">{data.standardDuration - data.optimizedDuration}</span>
+            <span className="text-sm ml-2">months saved through pattern reuse</span>
           </p>
         </div>
       )}
@@ -52,47 +49,53 @@ export default function CompressibleTimeline({ data, config }) {
             <div key={index}>
               <button
                 onClick={() => setExpandedStep(isExpanded ? null : index)}
-                className="w-full text-left"
+                className="w-full text-left group"
               >
-                <div className="flex items-center gap-4 mb-2">
-                  <div className="flex-shrink-0 w-8 h-8 bg-wa-blue rounded-full flex items-center justify-center text-white font-bold text-sm">
-                    {index + 1}
+                <div className="flex items-center gap-6 mb-3">
+                  {/* Step number */}
+                  <div className="flex-shrink-0 w-10 h-10 border border-aqua/30 flex items-center justify-center">
+                    <span className="text-sm text-aqua font-light">{String(index + 1).padStart(2, '0')}</span>
                   </div>
+
                   <div className="flex-1">
-                    <div className="flex items-center justify-between mb-1">
-                      <h4 className="font-semibold text-gray-900">{step.name}</h4>
-                      <span className="text-sm text-gray-600 font-medium">
-                        {duration} {duration === 1 ? 'month' : 'months'}
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="font-light text-bone tracking-wide group-hover:text-aqua transition-colors">
+                        {step.name}
+                      </h4>
+                      <span className="text-sm text-mist font-light">
+                        {duration} {duration === 1 ? 'mo' : 'mos'}
                       </span>
                     </div>
 
                     {/* Progress Bar */}
-                    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                    <div className="w-full bg-stone/30 h-1 overflow-hidden">
                       <div
-                        className="bg-gradient-to-r from-wa-blue to-wa-teal h-full rounded-full transition-all duration-700 ease-out"
+                        className="bg-gradient-to-r from-aqua to-teal h-full transition-all duration-1000 ease-out"
                         style={{ width: `${widthPercent}%` }}
                       />
                     </div>
                   </div>
 
-                  <ChevronRight className={`w-5 h-5 text-gray-400 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
+                  <span className={`text-mist transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`}>
+                    →
+                  </span>
                 </div>
               </button>
 
               {/* Expanded Details */}
               {isExpanded && (
-                <div className="ml-12 mt-3 p-4 bg-gray-50 rounded-lg border border-gray-200 space-y-3 animate-fade-in-up">
+                <div className="ml-16 mt-4 p-6 border-l border-aqua/20 bg-deep/50 space-y-4 animate-fade-in-up">
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase mb-1">What Happens</p>
-                    <p className="text-sm text-gray-700">{step.whatHappens}</p>
+                    <p className="text-xs text-mist uppercase tracking-widest mb-2">What Happens</p>
+                    <p className="text-sm text-cream/70 font-light">{step.whatHappens}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase mb-1">Where I Add Value</p>
-                    <p className="text-sm text-gray-700">{step.myValue}</p>
+                    <p className="text-xs text-mist uppercase tracking-widest mb-2">Value Added</p>
+                    <p className="text-sm text-cream/70 font-light">{step.myValue}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase mb-1">Artifact Produced</p>
-                    <p className="text-sm text-wa-blue font-medium">{step.artifact}</p>
+                    <p className="text-xs text-mist uppercase tracking-widest mb-2">Artifact</p>
+                    <p className="text-sm text-aqua font-light">{step.artifact}</p>
                   </div>
                 </div>
               )}

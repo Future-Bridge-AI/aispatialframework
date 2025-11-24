@@ -1,37 +1,24 @@
-import {
-  AlertCircle,
-  Zap,
-  Network,
-  Route,
-  TrendingUp,
-  Circle,
-  Check
-} from 'lucide-react';
-
-const iconMap = {
-  'alert-circle': AlertCircle,
-  'zap': Zap,
-  'network': Network,
-  'route': Route,
-  'trending-up': TrendingUp,
-};
+import { Circle } from 'lucide-react';
 
 export default function Sidebar({ sections, currentSection, viewedSections, onSectionChange }) {
   return (
-    <aside className="w-80 bg-white border-r border-gray-200 flex flex-col">
-      <div className="p-6 border-b border-gray-200">
-        <div className="w-12 h-12 bg-wa-blue rounded-lg flex items-center justify-center mb-3">
-          <span className="text-2xl font-bold text-white">WA</span>
+    <aside className="w-80 bg-deep border-r border-stone/30 flex flex-col">
+      {/* Header */}
+      <div className="p-8 border-b border-stone/30">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-10 h-10 border border-aqua/30 flex items-center justify-center">
+            <span className="text-lg font-light text-aqua tracking-widest">WA</span>
+          </div>
+          <div className="h-px flex-1 bg-gradient-to-r from-aqua/30 to-transparent" />
         </div>
-        <h2 className="text-lg font-semibold text-gray-900">Navigation</h2>
-        <p className="text-sm text-gray-600 mt-1">Click to jump between sections</p>
+        <h2 className="text-xs font-medium text-mist tracking-[0.3em] uppercase">Contents</h2>
       </div>
 
-      <nav className="flex-1 overflow-y-auto p-4 space-y-2">
+      {/* Navigation */}
+      <nav className="flex-1 overflow-y-auto py-4">
         {sections.map((section, index) => {
           const isActive = currentSection === index;
           const isViewed = viewedSections.has(index);
-          const IconComponent = iconMap[section.icon] || Circle;
 
           return (
             <button
@@ -39,35 +26,39 @@ export default function Sidebar({ sections, currentSection, viewedSections, onSe
               onClick={() => onSectionChange(index)}
               className={`sidebar-item w-full text-left ${isActive ? 'active' : ''} ${isViewed && !isActive ? 'completed' : ''}`}
             >
-              <div className="flex-shrink-0 mt-1">
-                {isViewed && !isActive ? (
-                  <Check className="w-5 h-5 text-green-600" />
-                ) : (
-                  <Circle className={`w-5 h-5 ${isActive ? 'text-wa-blue fill-wa-blue' : 'text-gray-400'}`} />
-                )}
+              {/* Section number */}
+              <div className="flex-shrink-0 w-8">
+                <span className={`text-2xl font-light ${isActive ? 'text-aqua' : isViewed ? 'text-drift' : 'text-stone'}`}>
+                  {String(index + 1).padStart(2, '0')}
+                </span>
               </div>
 
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-medium text-gray-500">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="text-sm font-semibold text-gray-900 truncate">
-                    {section.navLabel}
-                  </h3>
-                </div>
-                <p className="text-xs text-gray-600 line-clamp-2">
+              {/* Content */}
+              <div className="flex-1 min-w-0 ml-2">
+                <h3 className={`text-sm font-medium tracking-wide truncate ${isActive ? 'text-bone' : 'text-mist'}`}>
+                  {section.navLabel}
+                </h3>
+                <p className={`text-xs mt-1 line-clamp-2 ${isActive ? 'text-cream/60' : 'text-drift'}`}>
                   {section.navPreview}
                 </p>
               </div>
+
+              {/* Active indicator dot */}
+              {isActive && (
+                <div className="flex-shrink-0">
+                  <Circle className="w-2 h-2 text-aqua fill-aqua" />
+                </div>
+              )}
             </button>
           );
         })}
       </nav>
 
-      <div className="p-4 border-t border-gray-200 text-xs text-gray-500">
-        <p>Built for WA Government</p>
-        <p className="mt-1">Craig McDonnell - 2024</p>
+      {/* Footer */}
+      <div className="p-6 border-t border-stone/30">
+        <div className="h-px bg-gradient-to-r from-aqua/20 to-transparent mb-4" />
+        <p className="text-xs text-drift tracking-wide">Western Australia</p>
+        <p className="text-xs text-stone mt-1">AI-Ready Spatial Framework</p>
       </div>
     </aside>
   );

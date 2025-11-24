@@ -9,11 +9,10 @@ export default function AnimatedLayers({ data }) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Animate layers in sequence
           data.layers.forEach((_, index) => {
             setTimeout(() => {
               setVisibleLayers(prev => [...prev, index]);
-            }, index * 300);
+            }, index * 400);
           });
         }
       },
@@ -28,70 +27,78 @@ export default function AnimatedLayers({ data }) {
   }, [data.layers]);
 
   const colorMap = {
-    blue: 'bg-wa-blue',
-    teal: 'bg-wa-teal',
-    navy: 'bg-wa-navy',
+    blue: { border: 'border-aqua/30', bg: 'bg-aqua/5', text: 'text-aqua', num: 'text-aqua' },
+    teal: { border: 'border-teal/30', bg: 'bg-teal/5', text: 'text-teal', num: 'text-teal' },
+    navy: { border: 'border-sand/30', bg: 'bg-sand/5', text: 'text-sand', num: 'text-sand' },
   };
 
   return (
     <div ref={ref} className="section-card">
-      <h3 className="text-lg font-semibold text-gray-900 mb-6 text-center">
+      <h3 className="text-xs font-medium text-mist tracking-[0.3em] uppercase text-center mb-8">
         Three-Layer Architecture
       </h3>
 
       <div className="space-y-4">
-        {data.layers.map((layer, index) => (
-          <div
-            key={index}
-            className={`transition-all duration-500 ${
-              visibleLayers.includes(index)
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-8'
-            }`}
-            style={{ transitionDelay: `${index * 0.1}s` }}
-          >
-            <button
-              onClick={() => setSelectedLayer(selectedLayer === index ? null : index)}
-              className={`w-full p-6 rounded-lg border-2 transition-all ${
-                selectedLayer === index
-                  ? 'border-wa-blue bg-wa-blue/5 shadow-lg'
-                  : 'border-gray-200 hover:border-wa-blue/50'
+        {data.layers.map((layer, index) => {
+          const colors = colorMap[layer.color] || colorMap.blue;
+          const isSelected = selectedLayer === index;
+
+          return (
+            <div
+              key={index}
+              className={`transition-all duration-700 ${
+                visibleLayers.includes(index)
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-12'
               }`}
+              style={{ transitionDelay: `${index * 0.15}s` }}
             >
-              <div className="flex items-start gap-4">
-                <div className={`flex-shrink-0 w-12 h-12 ${colorMap[layer.color] || 'bg-wa-blue'} rounded-lg flex items-center justify-center`}>
-                  <span className="text-white font-bold text-lg">
-                    {data.layers.length - index}
+              <button
+                onClick={() => setSelectedLayer(isSelected ? null : index)}
+                className={`w-full p-6 border transition-all duration-500 text-left ${
+                  isSelected
+                    ? `${colors.border} ${colors.bg}`
+                    : 'border-stone/30 hover:border-stone/60'
+                }`}
+              >
+                <div className="flex items-start gap-6">
+                  {/* Layer number */}
+                  <div className="flex-shrink-0">
+                    <span className={`text-4xl font-light ${colors.num}`}>
+                      {String(data.layers.length - index).padStart(2, '0')}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h4 className="text-lg font-light text-bone mb-2 tracking-wide">
+                      {layer.name}
+                    </h4>
+                    <p className="text-sm text-mist font-light">
+                      {layer.description}
+                    </p>
+
+                    {isSelected && layer.waArtifact && (
+                      <div className={`mt-6 p-4 border-l-2 ${colors.border} ${colors.bg}`}>
+                        <p className="text-xs text-mist uppercase tracking-widest mb-2">
+                          WA Artifact
+                        </p>
+                        <p className={`text-sm font-light ${colors.text}`}>
+                          {layer.waArtifact}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Expand indicator */}
+                  <span className={`text-lg text-mist transition-transform duration-500 ${isSelected ? 'rotate-45' : ''}`}>
+                    +
                   </span>
                 </div>
-
-                <div className="flex-1 text-left">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-1">
-                    {layer.name}
-                  </h4>
-                  <p className="text-sm text-gray-600">
-                    {layer.description}
-                  </p>
-
-                  {selectedLayer === index && layer.waArtifact && (
-                    <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                      <p className="text-sm font-medium text-blue-900">
-                        WA's Existing Artifact:
-                      </p>
-                      <p className="text-sm text-blue-700 mt-1">
-                        {layer.waArtifact}
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                <span className={`text-2xl transition-transform ${selectedLayer === index ? 'rotate-180' : ''}`}>
-                  v
-                </span>
-              </div>
-            </button>
-          </div>
-        ))}
+              </button>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

@@ -9,20 +9,20 @@ export default function ToggleComparison({ data }) {
     value: activeView === 'wa' ? data.waValues[index] : data.nationalValues[index],
   }));
 
-  const colors = ['#0066CC', '#00A4B4', '#003366'];
+  const colors = ['#7fb8c9', '#5a9aab', '#a89078'];
 
   return (
     <div className="section-card">
       {/* Toggle Buttons */}
-      <div className="flex justify-center gap-4 mb-8">
-        {data.toggleStates.map((state) => (
+      <div className="flex justify-center gap-1 mb-10">
+        {data.toggleStates.map((state, index) => (
           <button
             key={state.id}
             onClick={() => setActiveView(state.id)}
-            className={`px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`px-8 py-3 text-sm tracking-widest uppercase transition-all duration-500 ${
               activeView === state.id
-                ? 'bg-wa-blue text-white shadow-lg scale-105'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-aqua/10 text-aqua border border-aqua/30'
+                : 'bg-transparent text-mist border border-stone hover:border-aqua/30 hover:text-aqua/70'
             }`}
           >
             {state.label}
@@ -34,28 +34,32 @@ export default function ToggleComparison({ data }) {
       <div className="h-80">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#252525" vertical={false} />
             <XAxis
               dataKey="name"
-              tick={{ fill: '#6b7280', fontSize: 12 }}
+              tick={{ fill: '#c9c5bc', fontSize: 11, fontWeight: 300 }}
               tickLine={false}
+              axisLine={{ stroke: '#252525' }}
             />
             <YAxis
               domain={[0, 100]}
-              tick={{ fill: '#6b7280', fontSize: 12 }}
+              tick={{ fill: '#c9c5bc', fontSize: 11, fontWeight: 300 }}
               tickLine={false}
-              label={{ value: 'Maturity (%)', angle: -90, position: 'insideLeft', fill: '#6b7280' }}
+              axisLine={{ stroke: '#252525' }}
+              label={{ value: 'Maturity %', angle: -90, position: 'insideLeft', fill: '#c9c5bc', fontSize: 11 }}
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: 'white',
-                border: '1px solid #e5e7eb',
-                borderRadius: '8px',
-                padding: '8px 12px'
+                backgroundColor: '#1a1a1a',
+                border: '1px solid #252525',
+                borderRadius: '0',
+                padding: '12px 16px'
               }}
+              labelStyle={{ color: '#f5f2ed', fontWeight: 300 }}
+              itemStyle={{ color: '#7fb8c9' }}
               formatter={(value) => [`${value}%`, 'Maturity']}
             />
-            <Bar dataKey="value" radius={[8, 8, 0, 0]} animationDuration={800}>
+            <Bar dataKey="value" radius={[2, 2, 0, 0]} animationDuration={800}>
               {chartData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
               ))}
@@ -65,11 +69,11 @@ export default function ToggleComparison({ data }) {
       </div>
 
       {/* Insight */}
-      <div className="mt-6 text-center">
-        <p className="text-sm text-gray-600">
+      <div className="mt-8 pt-6 border-t border-stone/30 text-center">
+        <p className="text-sm text-mist font-light tracking-wide">
           {activeView === 'wa'
-            ? 'WA is 20-30 points ahead across all dimensions'
-            : 'National baseline reflects minimum standards most jurisdictions currently meet'}
+            ? 'Western Australia leads by 20-30 points across all dimensions'
+            : 'National baseline reflects current minimum standards'}
         </p>
       </div>
     </div>
