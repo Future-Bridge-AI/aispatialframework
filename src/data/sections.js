@@ -1,80 +1,80 @@
 export const sections = [
   {
     id: "problem",
-    navLabel: "The 3.2x Problem",
-    navPreview: "Why fragmentation costs $4.8M/year in WA alone",
+    navLabel: "The Innovation Gap",
+    navPreview: "Why WA's spatial ecosystem is stuck in maintenance mode",
     icon: "alert-circle",
 
     heroStat: {
-      value: "3.2x",
-      label: "time wasted on fragmented spatial AI approaches",
-      countUp: false,
+      value: "12%",
+      label: "of spatial budgets typically allocated to innovation vs 88% on maintenance",
+      countUp: true,
       duration: 2000
     },
 
-    keyInsight: "Every WA council is solving the same AI-geospatial problems independently. National coordination could collapse 18-month timelines to 6.",
+    keyInsight: "The biggest capability gap isn't technology or data - it's the space to innovate. Teams are so busy maintaining legacy systems they can't experiment with what's next.",
 
     visualType: "splitComparison",
     visualData: {
       before: {
-        label: "Today",
-        description: "127 LGAs, 127 different approaches",
+        label: "Current Reality",
+        description: "Maintenance mode dominates",
         icon: "scattered",
         details: [
-          "Duplicate vendor contracts",
-          "Inconsistent metadata standards",
-          "Manual quality checks repeated",
-          "AI training data siloed"
+          "Teams stretched thin on BAU operations",
+          "No safe space to experiment with AI/ML",
+          "Innovation happens in silos (if at all)",
+          "Risk-averse culture blocks new approaches"
         ]
       },
       after: {
-        label: "With Framework",
-        description: "One national standard, local flexibility",
+        label: "Innovation-First",
+        description: "Structured space for experimentation",
         icon: "connected",
         details: [
-          "Shared procurement power",
-          "Consistent AI-ready formats",
-          "Automated quality pipelines",
-          "Federated training datasets"
+          "Dedicated innovation capacity protected",
+          "Sandbox environments for rapid prototyping",
+          "Cross-agency innovation sprints",
+          "Fail-fast culture with shared learnings"
         ]
       }
     },
 
     cta: {
-      text: "Show the duplication cost",
+      text: "What innovation could unlock",
       type: "reveal",
-      reveal: "$4.8M/year in WA alone on duplicate AI-spatial infrastructure"
+      reveal: "AI-powered land valuation, predictive bushfire modeling, real-time infrastructure monitoring - all waiting for capacity to prototype"
     },
 
     supportingPoints: [
-      "Each LGA negotiating separate licensing for spatial data platforms",
-      "Metadata inconsistency makes cross-council AI applications nearly impossible",
-      "Manual data quality processes repeated 127 times with no shared learning",
-      "Emergency response hampered by incompatible spatial data formats"
+      "Most agencies have ideas but no runway to test them",
+      "Technical debt consumes innovation bandwidth",
+      "Success is measured by uptime, not breakthroughs",
+      "The best spatial talent wants to innovate - retention suffers without it"
     ]
   },
 
   {
     id: "advantage",
-    navLabel: "WA's Unfair Advantage",
-    navPreview: "30+ agencies, 3-5 years ahead of national baseline",
+    navLabel: "WA's Innovation Assets",
+    navPreview: "The foundation is ready - we just need to build on it",
     icon: "zap",
 
     heroStat: {
       value: "30+",
-      label: "agencies collaborating on Spatial WA digital twin",
+      label: "agencies with untapped innovation potential on shared platforms",
       countUp: true,
       duration: 2000,
       suffix: ""
     },
 
-    keyInsight: "WA isn't asking for special treatment - we're 3-5 years ahead and offering the blueprint.",
+    keyInsight: "WA has spent 15 years building world-class spatial infrastructure. The innovation gap isn't about starting over - it's about unlocking what's already there.",
 
     visualType: "toggleComparison",
     visualData: {
-      metrics: ["Platform Maturity", "Open Data Readiness", "Digital Twin Progress"],
-      waValues: [85, 80, 70],
-      nationalValues: [60, 55, 40],
+      metrics: ["Platform Maturity", "Innovation Readiness", "AI Experimentation"],
+      waValues: [85, 45, 30],
+      nationalValues: [60, 40, 25],
       toggleStates: [
         { id: "wa", label: "WA Today" },
         { id: "national", label: "National Baseline" }
@@ -82,276 +82,268 @@ export const sections = [
     },
 
     cta: {
-      text: "Why WA is different",
+      text: "Hidden innovation potential",
       type: "reveal",
       reveal: [
-        "SLIP/Data WA = whole-of-government platform, not just a portal",
-        "Economic modeling shows spatial data drives nation-leading GSP impact",
-        "Already using AI-ready formats (STAC, GeoParquet, COG) in production",
-        "30+ agencies collaborating on shared digital twin infrastructure"
+        "SLIP/Data WA = production-ready platform waiting for innovative use cases",
+        "AI-ready formats (STAC, GeoParquet, COG) already in place",
+        "30+ agencies = massive potential for collaborative innovation",
+        "Digital twin infrastructure ready for AI experimentation"
       ]
     },
 
     supportingPoints: [
-      "SLIP has been operational for 15+ years with continuous improvement",
-      "Data WA provides unified discovery and access across all state data",
-      "Spatial WA digital twin integrates real-time and authoritative datasets",
-      "WA Government already committed to open data principles and AI ethics"
+      "SLIP has been operational for 15+ years - stable foundation for innovation",
+      "Data WA provides unified access - reduces innovation friction",
+      "Spatial WA digital twin is an innovation accelerator waiting to be activated",
+      "Cross-agency relationships exist - need innovation-focused activation"
     ]
   },
 
   {
-    id: "national-framework",
-    navLabel: "The National Play",
-    navPreview: "Ship a working minimum in 6 months using WA templates",
+    id: "innovation-framework",
+    navLabel: "Innovation Architecture",
+    navPreview: "A structured approach to breakthrough, not just maintenance",
     icon: "network",
 
     heroStat: {
-      value: "4",
-      label: "pilot states needed to prove the framework works",
+      value: "3",
+      label: "innovation horizons to balance quick wins with transformational bets",
       countUp: true,
       duration: 1500,
       suffix: ""
     },
 
-    keyInsight: "Use WA's existing specs as templates, not theory. Ship a working minimum in 6 months, not 2 years.",
+    keyInsight: "Innovation isn't chaos - it's structured experimentation. The framework creates protected space for breakthroughs while maintaining operational excellence.",
 
     visualType: "animatedLayers",
     visualData: {
       layers: [
         {
-          name: "Platforms & Services",
-          description: "SLIP, Data WA, state portals, digital twins",
-          waArtifact: "Data WA integration patterns + API specs",
+          name: "Horizon 1: Optimize",
+          description: "AI-enhance existing workflows (quick wins)",
+          waArtifact: "Automated QA, intelligent search, smart metadata",
           color: "blue"
         },
         {
-          name: "Standards & Schemas",
-          description: "Metadata, formats, governance rules",
-          waArtifact: "SLIP metadata schema v2.0",
+          name: "Horizon 2: Extend",
+          description: "New capabilities on existing platforms",
+          waArtifact: "Predictive analytics, cross-agency data fusion, ML pipelines",
           color: "teal"
         },
         {
-          name: "Policy & Principles",
-          description: "Ethics, privacy, AI safety, open data",
-          waArtifact: "WA Data Ethics Framework",
+          name: "Horizon 3: Transform",
+          description: "Experimental bets on emerging tech",
+          waArtifact: "Foundation models for spatial, autonomous systems, real-time digital twins",
           color: "navy"
         }
       ]
     },
 
     stepper: {
-      title: "The 90-day sprint to national standard",
+      title: "90-day innovation sprint framework",
       steps: [
         {
-          action: "Map current state frameworks across all jurisdictions",
+          action: "Innovation audit: map ideas, blockers, and capacity across teams",
           time: "2 weeks",
-          myRole: "Facilitate structured discovery interviews with state leads"
+          myRole: "Facilitate discovery sessions to surface dormant innovation potential"
         },
         {
-          action: "Draft minimum viable national standard using WA templates",
-          time: "3 weeks",
-          myRole: "Author spec documents in plain language with worked examples"
+          action: "Establish innovation sandbox with safe-to-fail boundaries",
+          time: "2 weeks",
+          myRole: "Design governance that enables experimentation without risk to production"
         },
         {
-          action: "Pilot with 3-4 diverse states (metro + regional)",
+          action: "Launch 3 cross-agency innovation sprints (one per horizon)",
           time: "4 weeks",
-          myRole: "Support technical integration and gather real-world feedback"
+          myRole: "Lead rapid prototyping using AI-native development approaches"
         },
         {
-          action: "Iterate standard based on pilot learnings",
-          time: "2 weeks",
-          myRole: "Synthesize feedback and update framework documentation"
-        },
-        {
-          action: "Lock governance model and ongoing support structure",
+          action: "Demo day: showcase outcomes to leadership and stakeholders",
           time: "1 week",
-          myRole: "Design review cycles and community of practice model"
+          myRole: "Translate technical experiments into business value narratives"
+        },
+        {
+          action: "Scale winners, document learnings, seed next wave",
+          time: "3 weeks",
+          myRole: "Build patterns library and innovation playbook for sustained momentum"
         }
       ]
     },
 
     cta: {
-      text: "See WA's reusable artifacts",
+      text: "See innovation governance model",
       type: "reveal",
       reveal: [
-        "SLIP Metadata Schema: 15+ years of refinement, AI-ready",
-        "Data WA API Patterns: REST, OGC, and modern streaming protocols",
-        "Spatial WA Governance Model: Co-design process with 30+ agencies",
-        "Open Data Policy Templates: Privacy-preserving, audit-ready"
+        "Protected innovation budget: minimum 20% of team capacity",
+        "Quarterly innovation sprints with cross-agency participation",
+        "Failure celebrated when learnings are captured and shared",
+        "Innovation metrics alongside operational KPIs"
       ]
     },
 
     supportingPoints: [
-      "ANZLIC and ICSM provide existing governance structures for national coordination",
-      "WA already participates in national spatial standards development",
-      "Framework designed for federation, not centralization",
-      "Each state maintains sovereignty while gaining interoperability"
+      "Balance innovation with operational stability through clear boundaries",
+      "Cross-agency collaboration multiplies innovation capacity",
+      "AI-native tools compress prototyping from months to days",
+      "Community of practice shares innovation patterns across government"
     ]
   },
 
   {
-    id: "wa-adoption",
-    navLabel: "Making It Real in WA",
-    navPreview: "18->6 months saved by starting with existing patterns",
+    id: "rapid-prototyping",
+    navLabel: "AI-Native Innovation",
+    navPreview: "From idea to working prototype in days, not months",
     icon: "route",
 
     heroStat: {
-      value: "18->6",
-      label: "months saved by leveraging WA's existing patterns",
+      value: "10x",
+      label: "faster prototyping with AI-native development approaches",
       countUp: false,
       duration: 2000,
-      suffix: " mos"
+      suffix: ""
     },
 
-    keyInsight: "Adoption isn't a compliance exercise. It's showing teams how standards make their work easier.",
+    keyInsight: "This app itself is proof of concept. Built in hours using AI-assisted development to demonstrate how rapidly we can translate ideas into interactive solutions.",
 
     visualType: "compressibleTimeline",
     visualData: {
-      standardDuration: 18,
-      optimizedDuration: 6,
+      standardDuration: 12,
+      optimizedDuration: 1,
       steps: [
         {
-          name: "Gap Assessment",
-          standard: 3,
-          optimized: 1,
-          whatHappens: "Map national framework requirements vs current WA standards and platforms",
-          myValue: "Facilitate structured discovery using gap analysis templates",
-          artifact: "Gap analysis report + priority matrix for WA implementation"
-        },
-        {
-          name: "Co-design Workshops",
-          standard: 4,
-          optimized: 1.5,
-          whatHappens: "Bring Landgate, agencies, and technical leads together to design WA approach",
-          myValue: "Lead workshops with spec-driven materials and plain-language examples",
-          artifact: "WA Implementation Guide v0.1 + agency-specific playbooks"
-        },
-        {
-          name: "Standards Development",
-          standard: 5,
-          optimized: 1.5,
-          whatHappens: "Create WA-specific extensions and integration specifications",
-          myValue: "Author clear, adoptable specs with worked examples and code samples",
-          artifact: "Technical specifications + reference implementations"
-        },
-        {
-          name: "Pilot Rollout",
-          standard: 4,
-          optimized: 1.5,
-          whatHappens: "Test with 3-5 high-impact systems (Data WA, SLIP, Spatial WA priority areas)",
-          myValue: "Mentor technical leads, troubleshoot integration issues, document patterns",
-          artifact: "Proven integration patterns + lessons learned documentation"
-        },
-        {
-          name: "Training & Enablement",
+          name: "Idea Capture",
           standard: 2,
-          optimized: 0.5,
-          whatHappens: "Deliver awareness sessions and technical training across agencies",
-          myValue: "Run tailored training programs (technical + strategic audiences)",
-          artifact: "Training materials + self-service learning resources"
+          optimized: 0.1,
+          whatHappens: "Translate stakeholder input into structured requirements",
+          myValue: "AI-assisted synthesis turns conversations into specs in real-time",
+          artifact: "Living requirements doc that evolves with each conversation"
+        },
+        {
+          name: "Rapid Prototype",
+          standard: 4,
+          optimized: 0.3,
+          whatHappens: "Build working proof-of-concept to test assumptions",
+          myValue: "AI-native development: describe → generate → iterate",
+          artifact: "Interactive prototype ready for stakeholder feedback"
+        },
+        {
+          name: "Feedback Loop",
+          standard: 3,
+          optimized: 0.2,
+          whatHappens: "Gather input, identify gaps, refine approach",
+          myValue: "Instant iteration - changes deployed in minutes",
+          artifact: "Validated design with stakeholder buy-in"
+        },
+        {
+          name: "Production Path",
+          standard: 3,
+          optimized: 0.4,
+          whatHappens: "Harden prototype for production deployment",
+          myValue: "Clear path from experiment to scalable solution",
+          artifact: "Production-ready implementation with governance approval"
         }
       ]
     },
 
     cta: {
-      text: "How we accelerate adoption",
+      text: "This app demonstrates the approach",
       type: "reveal",
       reveal: [
-        "Start with existing SLIP/Data WA patterns, not from scratch",
-        "Governance as enabler: provide templates, automation, clear examples",
-        "Spec-driven approach: ADRs, feature specs, implementation guides",
-        "Focus on high-leverage systems that demonstrate immediate value"
+        "Built in a single session using AI-assisted development",
+        "Responsive, interactive, production-quality",
+        "Easily customized based on stakeholder feedback",
+        "Pattern can be applied to any spatial innovation challenge"
       ]
     },
 
     supportingPoints: [
-      "Landgate already has strong technical capability to support implementation",
-      "WA agencies have established collaboration patterns through Spatial WA",
-      "Can demonstrate quick wins with systems already near AI-readiness",
-      "Implementation guide becomes living playbook for continuous improvement"
+      "AI-native development is a force multiplier for innovation capacity",
+      "Rapid prototyping de-risks innovation investments",
+      "Working software beats slide decks for stakeholder engagement",
+      "Skills transfer: teams learn by building alongside AI tools"
     ]
   },
 
   {
     id: "capability",
-    navLabel: "The 5-Year Multiplier",
-    navPreview: "$2.4M annual value from reuse at maturity",
+    navLabel: "Innovation Multiplier",
+    navPreview: "Building a culture where innovation compounds",
     icon: "trending-up",
 
     heroStat: {
-      value: "2.4",
-      label: "estimated annual value ($M) from reuse once framework matures (WA only)",
+      value: "5",
+      label: "innovation breakthroughs per year target (vs ~1 currently)",
       countUp: true,
       duration: 2500,
-      prefix: "$",
-      suffix: "M"
+      prefix: "",
+      suffix: "x"
     },
 
-    keyInsight: "This isn't a project. It's a capability that compounds - each agency makes the next adoption easier.",
+    keyInsight: "Innovation isn't a one-time project. It's a capability that compounds - each breakthrough creates patterns that make the next one easier.",
 
     visualType: "radarWithCalc",
     visualData: {
-      dimensions: ["Technology", "Governance", "Skills & Training", "Collaboration", "AI Readiness"],
-      today: [60, 65, 55, 70, 50],
-      target: [85, 90, 80, 90, 85],
+      dimensions: ["Innovation Culture", "Experimentation Capacity", "AI Readiness", "Cross-Agency Collab", "Speed to Prototype"],
+      today: [35, 30, 45, 60, 25],
+      target: [80, 75, 85, 90, 85],
       calculator: {
-        title: "Estimate your agency's benefit",
+        title: "Innovation capacity by team size",
         orgSizes: [
           {
-            label: "Small (1-2 spatial staff)",
+            label: "Small team (1-3 people)",
             value: "small",
-            benefit: 45000,
-            description: "Reduced duplicate effort, access to shared resources"
+            benefit: 2,
+            description: "2 innovation sprints/year with AI-native tools"
           },
           {
-            label: "Medium (3-10 spatial staff)",
+            label: "Medium team (4-10 people)",
             value: "medium",
-            benefit: 180000,
-            description: "Standardized workflows, reusable components, training savings"
+            benefit: 6,
+            description: "6 innovation sprints/year with dedicated capacity"
           },
           {
-            label: "Large (10+ spatial staff)",
+            label: "Large team (10+ people)",
             value: "large",
-            benefit: 450000,
-            description: "Platform efficiencies, AI capabilities, cross-agency collaboration"
+            benefit: 12,
+            description: "12 innovation sprints/year with full innovation track"
           }
         ]
       },
       growthAnimation: {
-        title: "The compound effect over 5 years",
+        title: "Innovation capability growth trajectory",
         milestones: [
-          { year: 1, agencies: 3, value: "Foundation set with pilot agencies" },
-          { year: 2, agencies: 8, value: "Early patterns proven and documented" },
-          { year: 3, agencies: 15, value: "2 shared services launched, training scaled" },
-          { year: 4, agencies: 25, value: "Community of practice thriving, reuse accelerating" },
-          { year: 5, agencies: 30, value: "Mature capability, marketplace of components" }
+          { year: 1, agencies: 3, value: "Innovation sandbox established, first cross-agency sprint" },
+          { year: 2, agencies: 8, value: "5 agencies running regular innovation sprints" },
+          { year: 3, agencies: 15, value: "Innovation patterns library, AI tools widely adopted" },
+          { year: 4, agencies: 25, value: "WA recognized as national leader in spatial innovation" },
+          { year: 5, agencies: 30, value: "Self-sustaining innovation culture, exporting patterns nationally" }
         ]
       }
     },
 
     cta: {
-      text: "See the compound effect",
+      text: "The compound effect of innovation",
       type: "reveal",
-      reveal: "Growth trajectory included in visualization below"
+      reveal: "Each successful innovation creates reusable patterns, builds confidence, attracts talent, and unlocks budget for the next breakthrough"
     },
 
     supportingPoints: [
-      "Living playbook and pattern library maintained by community of practice",
-      "Track metrics: reuse rates, data quality scores, AI use in decision-making",
-      "Training programs evolve based on real agency needs and use cases",
-      "Success stories and case studies accelerate adoption across government",
-      "Framework becomes foundation for next-generation services (predictive analytics, autonomous systems)"
+      "Innovation success stories attract and retain top spatial talent",
+      "Shared patterns reduce the cost of each subsequent innovation",
+      "Cross-agency collaboration multiplies the impact of every breakthrough",
+      "WA becomes the exemplar other jurisdictions learn from",
+      "Innovation culture becomes self-reinforcing competitive advantage"
     ]
   }
 ];
 
 // Export metadata for easy reference
 export const appMetadata = {
-  title: "WA's AI-Ready Spatial Framework",
-  subtitle: "A 10-minute interactive story",
+  title: "Unlocking Spatial Innovation in WA",
+  subtitle: "A vision for breakthrough, not just maintenance",
   totalSections: sections.length,
-  estimatedTime: "10 minutes",
+  estimatedTime: "8 minutes",
   author: "Craig McDonnell",
-  version: "1.0.0"
+  version: "2.0.0"
 };

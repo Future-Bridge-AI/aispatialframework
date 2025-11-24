@@ -60,10 +60,10 @@ function App() {
           <div className="max-w-5xl mx-auto px-8 py-4 flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-wa-navy">
-                WA's AI-Ready Spatial Framework
+                Unlocking Spatial Innovation in WA
               </h1>
               <p className="text-sm text-gray-600">
-                A 10-minute interactive story
+                A vision for breakthrough, not just maintenance
               </p>
             </div>
             <button
