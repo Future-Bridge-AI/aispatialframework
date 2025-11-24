@@ -1,8 +1,105 @@
 import { useState, useEffect, useRef } from 'react';
 
+// Human vs AI comparison data
+const humanVsAI = {
+  human: {
+    label: 'Human-Centric',
+    description: 'Traditional desktop workflows',
+    items: [
+      { aspect: 'Data Format', value: 'PDF reports, Excel files, desktop GIS' },
+      { aspect: 'Discovery', value: 'Manual search, tribal knowledge' },
+      { aspect: 'Integration', value: 'Copy-paste, email attachments' },
+      { aspect: 'Quality', value: 'Spot checks, manual review' },
+      { aspect: 'Provenance', value: 'File metadata, folder structure' },
+    ]
+  },
+  ai: {
+    label: 'AI-Ready',
+    description: 'Machine-accessible patterns',
+    items: [
+      { aspect: 'Data Format', value: 'STAC, GeoParquet, COG, API-first' },
+      { aspect: 'Discovery', value: 'Semantic search, metadata catalogs' },
+      { aspect: 'Integration', value: 'Streaming protocols, federated queries' },
+      { aspect: 'Quality', value: 'Automated validation pipelines' },
+      { aspect: 'Provenance', value: 'Immutable lineage, audit trails' },
+    ]
+  }
+};
+
+function HumanVsAIToggle({ activeMode, onToggle }) {
+  return (
+    <div className="mb-8">
+      <div className="flex justify-center gap-1 mb-6">
+        <button
+          onClick={() => onToggle('human')}
+          className={`px-6 py-3 text-sm tracking-widest uppercase transition-all duration-500 ${
+            activeMode === 'human'
+              ? 'bg-terracotta/10 text-terracotta border border-terracotta/30'
+              : 'bg-transparent text-mist border border-stone hover:border-terracotta/30'
+          }`}
+          aria-pressed={activeMode === 'human'}
+        >
+          Human-Centric
+        </button>
+        <button
+          onClick={() => onToggle('ai')}
+          className={`px-6 py-3 text-sm tracking-widest uppercase transition-all duration-500 ${
+            activeMode === 'ai'
+              ? 'bg-aqua/10 text-aqua border border-aqua/30'
+              : 'bg-transparent text-mist border border-stone hover:border-aqua/30'
+          }`}
+          aria-pressed={activeMode === 'ai'}
+        >
+          AI-Ready
+        </button>
+      </div>
+
+      <div className={`p-6 border transition-all duration-500 ${
+        activeMode === 'human'
+          ? 'border-terracotta/20 bg-terracotta/5'
+          : 'border-aqua/20 bg-aqua/5'
+      }`}>
+        <h4 className={`text-lg font-light mb-4 ${activeMode === 'human' ? 'text-terracotta' : 'text-aqua'}`}>
+          {humanVsAI[activeMode].description}
+        </h4>
+
+        <div className="space-y-3">
+          {humanVsAI[activeMode].items.map((item, i) => (
+            <div
+              key={item.aspect}
+              className="flex items-start gap-4 animate-fade-in"
+              style={{ animationDelay: `${i * 50}ms` }}
+            >
+              <span className="text-xs text-mist uppercase tracking-widest w-24 flex-shrink-0 pt-1">
+                {item.aspect}
+              </span>
+              <span className={`text-sm font-light ${activeMode === 'human' ? 'text-cream/60' : 'text-cream/80'}`}>
+                {item.value}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {activeMode === 'human' && (
+          <p className="mt-4 text-xs text-terracotta/60 italic">
+            These patterns block AI agents from accessing and processing spatial data effectively
+          </p>
+        )}
+        {activeMode === 'ai' && (
+          <p className="mt-4 text-xs text-aqua/60 italic">
+            Open formats with provenance enable autonomous agents to discover, validate, and integrate data
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function AnimatedLayers({ data }) {
   const [visibleLayers, setVisibleLayers] = useState([]);
   const [selectedLayer, setSelectedLayer] = useState(null);
+  const [showComparison, setShowComparison] = useState(false);
+  const [comparisonMode, setComparisonMode] = useState('ai');
   const ref = useRef(null);
 
   useEffect(() => {
@@ -34,6 +131,21 @@ export default function AnimatedLayers({ data }) {
 
   return (
     <div ref={ref} className="section-card">
+      {/* Human vs AI Toggle */}
+      <div className="mb-8 text-center">
+        <button
+          onClick={() => setShowComparison(!showComparison)}
+          className="text-sm text-mist hover:text-aqua transition-colors tracking-wide border border-stone px-4 py-2 hover:border-aqua/30 focus:outline-none focus:ring-2 focus:ring-aqua/50 rounded"
+          aria-expanded={showComparison}
+        >
+          {showComparison ? 'Hide framework comparison' : 'Compare Human vs AI-Ready approach'}
+        </button>
+      </div>
+
+      {showComparison && (
+        <HumanVsAIToggle activeMode={comparisonMode} onToggle={setComparisonMode} />
+      )}
+
       <h3 className="text-xs font-medium text-mist tracking-[0.3em] uppercase text-center mb-8">
         Three-Layer Architecture
       </h3>
@@ -55,11 +167,12 @@ export default function AnimatedLayers({ data }) {
             >
               <button
                 onClick={() => setSelectedLayer(isSelected ? null : index)}
-                className={`w-full p-6 border transition-all duration-500 text-left ${
+                className={`w-full p-6 border transition-all duration-500 text-left focus:outline-none focus:ring-2 focus:ring-aqua/50 ${
                   isSelected
                     ? `${colors.border} ${colors.bg}`
                     : 'border-stone/30 hover:border-stone/60'
                 }`}
+                aria-expanded={isSelected}
               >
                 <div className="flex items-start gap-6">
                   {/* Layer number */}
@@ -79,7 +192,7 @@ export default function AnimatedLayers({ data }) {
                     </p>
 
                     {isSelected && layer.waArtifact && (
-                      <div className={`mt-6 p-4 border-l-2 ${colors.border} ${colors.bg}`}>
+                      <div className={`mt-6 p-4 border-l-2 ${colors.border} ${colors.bg} animate-fade-in`}>
                         <p className="text-xs text-mist uppercase tracking-widest mb-2">
                           WA Artifact
                         </p>

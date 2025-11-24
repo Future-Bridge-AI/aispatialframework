@@ -1,11 +1,115 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, Tooltip } from 'recharts';
-import { formatCurrency } from '../../utils/helpers';
+import CountUp from 'react-countup';
+
+// Calculate benefit based on org size (staff count)
+function calculateBenefit(staffCount) {
+  if (staffCount <= 2) {
+    return Math.round(staffCount * 22500);
+  } else if (staffCount <= 10) {
+    return Math.round(45000 + (staffCount - 2) * 16875);
+  } else {
+    return Math.round(180000 + (staffCount - 10) * 27000);
+  }
+}
+
+function formatCurrency(amount) {
+  if (amount >= 1000000) {
+    return `$${(amount / 1000000).toFixed(2)}M`;
+  } else if (amount >= 1000) {
+    return `$${(amount / 1000).toFixed(0)}K`;
+  }
+  return `$${amount.toLocaleString()}`;
+}
+
+function BenefitSlider({ value, onChange, benefit }) {
+  const sizeLabel = value <= 2 ? 'Small' : value <= 10 ? 'Medium' : 'Large';
+
+  return (
+    <div className="p-6 border border-aqua/20 bg-aqua/5">
+      <div className="flex items-center justify-between mb-4">
+        <span className="text-xs text-mist uppercase tracking-widest">Organisation Size</span>
+        <span className="text-sm text-aqua font-medium">{sizeLabel} ({value} spatial staff)</span>
+      </div>
+
+      {/* Custom slider */}
+      <div className="relative mb-6">
+        <input
+          type="range"
+          min="1"
+          max="30"
+          value={value}
+          onChange={(e) => onChange(parseInt(e.target.value))}
+          className="w-full h-2 bg-stone/30 rounded-lg appearance-none cursor-pointer
+                     [&::-webkit-slider-thumb]:appearance-none
+                     [&::-webkit-slider-thumb]:w-5
+                     [&::-webkit-slider-thumb]:h-5
+                     [&::-webkit-slider-thumb]:rounded-full
+                     [&::-webkit-slider-thumb]:bg-aqua
+                     [&::-webkit-slider-thumb]:cursor-pointer
+                     [&::-webkit-slider-thumb]:transition-all
+                     [&::-webkit-slider-thumb]:hover:scale-110
+                     [&::-webkit-slider-thumb]:shadow-lg
+                     [&::-webkit-slider-thumb]:shadow-aqua/30
+                     [&::-moz-range-thumb]:w-5
+                     [&::-moz-range-thumb]:h-5
+                     [&::-moz-range-thumb]:rounded-full
+                     [&::-moz-range-thumb]:bg-aqua
+                     [&::-moz-range-thumb]:border-0
+                     [&::-moz-range-thumb]:cursor-pointer
+                     focus:outline-none focus:ring-2 focus:ring-aqua/50"
+          aria-label={`Organisation size: ${value} spatial staff`}
+        />
+
+        {/* Scale markers */}
+        <div className="flex justify-between mt-2 text-xs text-drift">
+          <span>1</span>
+          <span>10</span>
+          <span>20</span>
+          <span>30</span>
+        </div>
+      </div>
+
+      {/* Benefit display */}
+      <div className="text-center p-4 bg-void/50 border border-aqua/10">
+        <p className="text-xs text-mist uppercase tracking-widest mb-2">Estimated Annual Benefit</p>
+        <p className="text-4xl font-light text-aqua glow-text">
+          <CountUp
+            end={benefit}
+            duration={0.5}
+            separator=","
+            prefix="$"
+            preserveValue={true}
+          />
+        </p>
+        <p className="text-xs text-mist mt-2">in reduced duplication and efficiency gains</p>
+      </div>
+
+      {/* Size category descriptions */}
+      <div className="mt-4 grid grid-cols-3 gap-2 text-center">
+        <div className={`p-2 transition-all ${value <= 2 ? 'bg-aqua/10 border border-aqua/20' : ''}`}>
+          <p className="text-xs text-mist">Small</p>
+          <p className="text-[10px] text-drift">1-2 staff</p>
+        </div>
+        <div className={`p-2 transition-all ${value > 2 && value <= 10 ? 'bg-aqua/10 border border-aqua/20' : ''}`}>
+          <p className="text-xs text-mist">Medium</p>
+          <p className="text-[10px] text-drift">3-10 staff</p>
+        </div>
+        <div className={`p-2 transition-all ${value > 10 ? 'bg-aqua/10 border border-aqua/20' : ''}`}>
+          <p className="text-xs text-mist">Large</p>
+          <p className="text-[10px] text-drift">10+ staff</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function RadarWithCalc({ data }) {
   const [radarView, setRadarView] = useState('today');
-  const [selectedOrgSize, setSelectedOrgSize] = useState(data.calculator.orgSizes[1]);
+  const [staffCount, setStaffCount] = useState(5);
   const [showGrowth, setShowGrowth] = useState(false);
+
+  const benefit = useMemo(() => calculateBenefit(staffCount), [staffCount]);
 
   const radarData = data.dimensions.map((dimension, index) => ({
     dimension,
@@ -19,27 +123,29 @@ export default function RadarWithCalc({ data }) {
         <div className="flex justify-center gap-1 mb-8">
           <button
             onClick={() => setRadarView('today')}
-            className={`px-8 py-3 text-sm tracking-widest uppercase transition-all duration-500 ${
+            className={`px-8 py-3 text-sm tracking-widest uppercase transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-aqua/50 ${
               radarView === 'today'
                 ? 'bg-aqua/10 text-aqua border border-aqua/30'
                 : 'bg-transparent text-mist border border-stone hover:border-aqua/30'
             }`}
+            aria-pressed={radarView === 'today'}
           >
             Today
           </button>
           <button
             onClick={() => setRadarView('target')}
-            className={`px-8 py-3 text-sm tracking-widest uppercase transition-all duration-500 ${
+            className={`px-8 py-3 text-sm tracking-widest uppercase transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-aqua/50 ${
               radarView === 'target'
                 ? 'bg-aqua/10 text-aqua border border-aqua/30'
                 : 'bg-transparent text-mist border border-stone hover:border-aqua/30'
             }`}
+            aria-pressed={radarView === 'target'}
           >
             Target
           </button>
         </div>
 
-        <div className="h-96">
+        <div className="h-96" role="img" aria-label="Radar chart showing capability dimensions">
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={radarData}>
               <PolarGrid stroke="#252525" />
@@ -74,48 +180,17 @@ export default function RadarWithCalc({ data }) {
         </div>
       </div>
 
-      {/* ROI Calculator */}
+      {/* Interactive Benefit Slider */}
       <div className="section-card">
         <h3 className="text-xs font-medium text-mist tracking-[0.3em] uppercase mb-6">
-          {data.calculator.title}
+          Estimate Your Agency's Benefit
         </h3>
 
-        <div className="space-y-3">
-          {data.calculator.orgSizes.map((orgSize) => (
-            <button
-              key={orgSize.value}
-              onClick={() => setSelectedOrgSize(orgSize)}
-              className={`w-full p-5 border transition-all duration-500 text-left ${
-                selectedOrgSize.value === orgSize.value
-                  ? 'border-aqua/30 bg-aqua/5'
-                  : 'border-stone/30 hover:border-stone/60'
-              }`}
-            >
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <h4 className="font-light text-bone mb-1 tracking-wide">
-                    {orgSize.label}
-                  </h4>
-                  <p className="text-sm text-mist/60 font-light">{orgSize.description}</p>
-                </div>
-                <div className="text-right ml-6">
-                  <p className="text-2xl font-light text-aqua">
-                    {formatCurrency(orgSize.benefit)}
-                  </p>
-                  <p className="text-xs text-mist tracking-wide">per year</p>
-                </div>
-              </div>
-            </button>
-          ))}
-        </div>
-
-        <div className="mt-6 p-4 border-l-2 border-aqua/30 bg-aqua/5">
-          <p className="text-sm text-cream/80 font-light">
-            <span className="text-aqua">{selectedOrgSize.label}</span> →
-            <span className="text-aqua ml-2">{formatCurrency(selectedOrgSize.benefit)}/year</span>
-            <span className="text-mist ml-2">in efficiency gains</span>
-          </p>
-        </div>
+        <BenefitSlider
+          value={staffCount}
+          onChange={setStaffCount}
+          benefit={benefit}
+        />
       </div>
 
       {/* Growth Animation */}
@@ -123,7 +198,8 @@ export default function RadarWithCalc({ data }) {
         <div className="section-card">
           <button
             onClick={() => setShowGrowth(!showGrowth)}
-            className="w-full flex items-center justify-between p-2 hover:bg-stone/20 transition-all"
+            className="w-full flex items-center justify-between p-2 hover:bg-stone/20 transition-all focus:outline-none focus:ring-2 focus:ring-aqua/50 rounded"
+            aria-expanded={showGrowth}
           >
             <span className="text-xs font-medium text-mist tracking-[0.3em] uppercase">
               {data.growthAnimation.title}

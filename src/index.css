@@ -5,15 +5,60 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Respect user preference for reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      scroll-behavior: auto;
+    }
   }
 
   body {
     @apply bg-void text-bone antialiased;
     font-feature-settings: "kern" 1, "liga" 1;
+    /* Ensure minimum readable font size */
+    font-size: clamp(16px, 1rem, 18px);
+    line-height: 1.6;
   }
 
   ::selection {
     @apply bg-aqua/30 text-bone;
+  }
+
+  /* Improved focus styles for keyboard navigation */
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid #7fb8c9;
+    outline-offset: 2px;
+  }
+
+  /* Skip link for keyboard users */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #7fb8c9;
+    color: #0a0a0a;
+    padding: 8px 16px;
+    z-index: 100;
+    font-weight: 500;
+    transition: top 0.2s;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
@@ -75,12 +120,15 @@
     box-shadow: 0 0 60px -15px rgba(127, 184, 201, 0.15);
   }
 
-  /* CTA Button - refined dark style */
+  /* CTA Button - refined dark style with accessible focus */
   .cta-button {
     @apply inline-flex items-center gap-3 px-8 py-4
-           bg-transparent border border-bone/20 text-bone
+           bg-transparent border-2 border-bone/40 text-bone
            font-medium tracking-wide rounded-none
            transition-all duration-500 relative overflow-hidden;
+    /* Minimum touch target size for mobile accessibility */
+    min-height: 48px;
+    min-width: 48px;
   }
 
   .cta-button::before {
@@ -96,21 +144,35 @@
   }
 
   .cta-button:hover {
-    @apply border-aqua/50 text-aqua;
+    @apply border-aqua text-aqua;
   }
 
   .cta-button:hover::before {
     transform: scaleX(1);
   }
 
+  .cta-button:focus-visible {
+    @apply border-aqua text-aqua;
+    outline: 2px solid #7fb8c9;
+    outline-offset: 2px;
+  }
+
   .cta-button:active {
     transform: scale(0.98);
   }
 
-  /* Sidebar styling */
+  /* Sidebar styling with accessible focus states */
   .sidebar-item {
     @apply flex items-start gap-4 p-4 cursor-pointer transition-all duration-300
            border-l-2 border-transparent hover:bg-stone/50;
+    /* Minimum touch target */
+    min-height: 48px;
+  }
+
+  .sidebar-item:focus-visible {
+    @apply bg-stone/70;
+    outline: 2px solid #7fb8c9;
+    outline-offset: -2px;
   }
 
   .sidebar-item.active {
@@ -118,7 +180,7 @@
   }
 
   .sidebar-item.completed {
-    @apply opacity-60;
+    @apply opacity-80;
   }
 
   /* Hero stat - dramatic typography */
@@ -203,4 +265,42 @@
 
 .recharts-text {
   fill: #c9c5bc !important;
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Ensure interactive elements have visible focus for keyboard users */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid #7fb8c9;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .section-card {
+    border-width: 2px;
+  }
+
+  .cta-button {
+    border-width: 2px;
+  }
+
+  .sidebar-item.active {
+    border-left-width: 3px;
+  }
 }
