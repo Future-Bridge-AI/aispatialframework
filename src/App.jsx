@@ -28,17 +28,17 @@ function App() {
   const progress = ((currentSection + 1) / sections.length) * 100;
 
   return (
-    <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} h-screen overflow-hidden bg-gray-50`}>
+    <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} h-screen overflow-hidden bg-simpsons-sky-light`}>
       {/* Sidebar */}
       {isMobile ? (
         <select
           value={currentSection}
           onChange={(e) => handleSectionChange(Number(e.target.value))}
-          className="w-full p-4 border-b border-gray-200 bg-white"
+          className="w-full p-4 border-b-4 border-simpsons-yellow bg-white font-bold text-gray-900"
         >
           {sections.map((section, index) => (
             <option key={section.id} value={index}>
-              {index + 1}. {section.navLabel}
+              🍩 {index + 1}. {section.navLabel}
             </option>
           ))}
         </select>
@@ -56,22 +56,26 @@ function App() {
         <ProgressBar progress={progress} />
 
         {/* Header */}
-        <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
+        <header className="bg-gradient-to-r from-simpsons-yellow via-simpsons-yellow-light to-simpsons-yellow border-b-4 border-simpsons-orange sticky top-0 z-10 shadow-cartoon">
           <div className="max-w-5xl mx-auto px-8 py-4 flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-wa-navy">
-                Springfield's AI-Ready Spatial Framework
-              </h1>
-              <p className="text-sm text-gray-600">
-                A 10-minute interactive story (Excellent...)
-              </p>
+            <div className="flex items-center gap-4">
+              <span className="text-4xl">🍩</span>
+              <div>
+                <h1 className="text-2xl font-bold text-simpsons-blue-dark">
+                  Springfield's AI-Ready Spatial Framework
+                </h1>
+                <p className="text-sm text-simpsons-brown font-medium">
+                  A 10-minute interactive story (Excellent...)
+                </p>
+              </div>
             </div>
             <button
               onClick={() => setTldrMode(!tldrMode)}
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-wa-blue
-                       border border-gray-300 rounded-lg hover:border-wa-blue transition-all"
+              className="px-4 py-2 text-sm font-bold text-simpsons-blue-dark hover:text-simpsons-orange
+                       border-2 border-simpsons-blue rounded-xl hover:border-simpsons-orange transition-all
+                       bg-white hover:bg-simpsons-yellow-light shadow-cartoon"
             >
-              {tldrMode ? 'Full Story' : 'TL;DR Mode'}
+              {tldrMode ? '📺 Full Story' : '⚡ TL;DR Mode'}
             </button>
           </div>
         </header>
@@ -85,27 +89,29 @@ function App() {
           />
 
           {/* Navigation Buttons */}
-          <div className="flex items-center justify-between mt-12 pt-8 border-t border-gray-200">
+          <div className="flex items-center justify-between mt-12 pt-8 border-t-2 border-simpsons-yellow/50">
             <button
               onClick={() => handleSectionChange(Math.max(0, currentSection - 1))}
               disabled={currentSection === 0}
-              className="px-6 py-3 text-gray-700 font-medium rounded-lg border border-gray-300
-                       hover:border-wa-blue hover:text-wa-blue transition-all
-                       disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-gray-300"
+              className="px-6 py-3 text-simpsons-blue font-bold rounded-xl border-2 border-simpsons-sky
+                       hover:border-simpsons-yellow hover:bg-simpsons-yellow-light transition-all
+                       disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-simpsons-sky
+                       bg-white shadow-cartoon"
             >
               ← Previous
             </button>
 
-            <span className="text-sm text-gray-500">
-              Section {currentSection + 1} of {sections.length}
+            <span className="text-sm font-bold text-simpsons-blue bg-white px-4 py-2 rounded-xl border-2 border-simpsons-sky">
+              🍩 Section {currentSection + 1} of {sections.length}
             </span>
 
             <button
               onClick={() => handleSectionChange(Math.min(sections.length - 1, currentSection + 1))}
               disabled={currentSection === sections.length - 1}
-              className="px-6 py-3 bg-wa-blue text-white font-medium rounded-lg
-                       hover:bg-wa-navy transition-all hover:shadow-lg
-                       disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-wa-blue"
+              className="px-6 py-3 bg-simpsons-yellow text-simpsons-blue-dark font-bold rounded-xl
+                       hover:bg-simpsons-orange hover:text-white transition-all shadow-cartoon-lg
+                       border-2 border-simpsons-orange/50
+                       disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-simpsons-yellow"
             >
               Next →
             </button>

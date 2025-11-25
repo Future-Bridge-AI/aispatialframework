@@ -4,11 +4,17 @@
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900 antialiased;
+    @apply bg-simpsons-sky-light text-gray-900 antialiased;
+    font-family: 'Comic Neue', cursive, sans-serif;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Add cartoon-style borders to everything */
+  * {
+    border-color: rgba(0,0,0,0.15);
   }
 }
 
@@ -25,26 +31,27 @@
   }
 
   .section-card {
-    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6 transition-all duration-300;
+    @apply bg-white rounded-xl shadow-cartoon border-2 border-black/10 p-6 transition-all duration-300;
   }
 
   .section-card:hover {
-    @apply shadow-md border-wa-blue;
+    @apply shadow-cartoon-lg border-simpsons-yellow;
+    transform: translate(-2px, -2px);
   }
 
   .cta-button {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-wa-blue text-white
-           font-medium rounded-lg hover:bg-wa-navy transition-all duration-300
-           hover:shadow-lg hover:scale-105 active:scale-95;
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-simpsons-yellow text-gray-900
+           font-bold rounded-xl hover:bg-simpsons-yellow-dark transition-all duration-300
+           hover:shadow-cartoon-lg hover:scale-105 active:scale-95 border-2 border-black/20;
   }
 
   .sidebar-item {
-    @apply flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-all duration-200
-           hover:bg-gray-100;
+    @apply flex items-start gap-3 p-3 rounded-xl cursor-pointer transition-all duration-200
+           hover:bg-simpsons-yellow/20 border-2 border-transparent;
   }
 
   .sidebar-item.active {
-    @apply bg-wa-blue/10 border-l-4 border-wa-blue;
+    @apply bg-simpsons-yellow/30 border-l-4 border-simpsons-yellow;
   }
 
   .sidebar-item.completed {
@@ -52,11 +59,26 @@
   }
 
   .hero-stat {
-    @apply text-7xl font-bold text-wa-blue leading-none;
+    @apply text-7xl font-bold text-simpsons-blue leading-none;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
   }
 
   .key-insight {
     @apply text-xl font-semibold text-gray-800 leading-relaxed max-w-3xl mx-auto;
+  }
+
+  /* Simpsons cloud pattern for backgrounds */
+  .simpsons-clouds {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='50' rx='40' ry='25' fill='white' opacity='0.5'/%3E%3C/svg%3E");
+    background-size: 200px 100px;
+  }
+
+  /* Donut accent */
+  .donut-accent::before {
+    content: '🍩';
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.3;
   }
 }
 
@@ -74,5 +96,25 @@
 
 /* Loading states */
 .skeleton {
-  @apply animate-pulse bg-gray-200 rounded;
+  @apply animate-pulse bg-simpsons-yellow/30 rounded-xl;
+}
+
+/* Custom scrollbar with Simpsons theme */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #B8E6FF;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFD90F;
+  border-radius: 6px;
+  border: 2px solid #B8E6FF;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E5C200;
 }
