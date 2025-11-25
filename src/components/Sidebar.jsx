@@ -18,13 +18,17 @@ const iconMap = {
 
 export default function Sidebar({ sections, currentSection, viewedSections, onSectionChange }) {
   return (
-    <aside className="w-80 bg-white border-r border-gray-200 flex flex-col">
-      <div className="p-6 border-b border-gray-200">
-        <div className="w-12 h-12 bg-wa-blue rounded-lg flex items-center justify-center mb-3">
+    <aside className="w-80 bg-white/70 backdrop-blur-lg border-r border-white/50 flex flex-col shadow-lg">
+      <div className="p-6 border-b border-white/50">
+        <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-3"
+             style={{
+               background: 'linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)',
+               boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)'
+             }}>
           <span className="text-2xl font-bold text-white">WA</span>
         </div>
-        <h2 className="text-lg font-semibold text-gray-900">Navigation</h2>
-        <p className="text-sm text-gray-600 mt-1">Click to jump between sections</p>
+        <h2 className="text-lg font-semibold bg-gradient-electric bg-clip-text text-transparent">Navigation</h2>
+        <p className="text-sm text-gray-700 mt-1 font-medium">Click to jump between sections</p>
       </div>
 
       <nav className="flex-1 overflow-y-auto p-4 space-y-2">
@@ -65,8 +69,8 @@ export default function Sidebar({ sections, currentSection, viewedSections, onSe
         })}
       </nav>
 
-      <div className="p-4 border-t border-gray-200 text-xs text-gray-500">
-        <p>Built for WA Government</p>
+      <div className="p-4 border-t border-white/50 text-xs text-gray-600">
+        <p className="font-semibold">Built for WA Government</p>
         <p className="mt-1">Craig McDonnell - 2024</p>
       </div>
     </aside>

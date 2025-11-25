@@ -4,7 +4,10 @@
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900 antialiased;
+    @apply text-gray-900 antialiased;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #fce7f3 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
   }
 
   html {
@@ -25,26 +28,38 @@
   }
 
   .section-card {
-    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6 transition-all duration-300;
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50 p-6 transition-all duration-300;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
 
   .section-card:hover {
-    @apply shadow-md border-wa-blue;
+    @apply border-innovation-purple/50;
+    box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04);
+    transform: translateY(-2px);
   }
 
   .cta-button {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-wa-blue text-white
-           font-medium rounded-lg hover:bg-wa-navy transition-all duration-300
-           hover:shadow-lg hover:scale-105 active:scale-95;
+    @apply inline-flex items-center gap-2 px-6 py-3 text-white
+           font-medium rounded-xl transition-all duration-300
+           hover:shadow-xl hover:scale-105 active:scale-95;
+    background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+
+  .cta-button:hover {
+    background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+    box-shadow: 0 6px 25px rgba(139, 92, 246, 0.4);
   }
 
   .sidebar-item {
-    @apply flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-all duration-200
-           hover:bg-gray-100;
+    @apply flex items-start gap-3 p-3 rounded-xl cursor-pointer transition-all duration-200
+           hover:bg-white/50 hover:shadow-md;
   }
 
   .sidebar-item.active {
-    @apply bg-wa-blue/10 border-l-4 border-wa-blue;
+    @apply bg-gradient-to-r from-innovation-purple/10 to-wa-blue/10 border-l-4;
+    border-image: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%) 1;
+    box-shadow: 0 4px 10px rgba(139, 92, 246, 0.1);
   }
 
   .sidebar-item.completed {
@@ -52,7 +67,12 @@
   }
 
   .hero-stat {
-    @apply text-7xl font-bold text-wa-blue leading-none;
+    @apply text-7xl font-bold leading-none;
+    background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: float 3s ease-in-out infinite;
   }
 
   .key-insight {
